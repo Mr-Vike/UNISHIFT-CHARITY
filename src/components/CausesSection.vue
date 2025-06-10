@@ -1,5 +1,5 @@
 <template>
-  <section class="causes-section section-padding">
+  <section id="causes" class="causes-section section-padding">
     <div class="container">
       <div class="section-header fade-in" ref="header">
         <h2 class="section-title">Our Causes</h2>

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <NavbarSection />
     <LandingSection />
     <CausesSection />
     <ReachOutSection />
@@ -10,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+import NavbarSection from './components/NavbarSection.vue'
 import LandingSection from './components/LandingSection.vue'
 import CausesSection from './components/CausesSection.vue'
 import ReachOutSection from './components/ReachOutSection.vue'
@@ -123,6 +125,31 @@ html {
   margin: 0 auto;
   padding: 0 24px;
   width: 100%;
+}
+
+/* Add IDs for smooth scrolling */
+section:nth-child(2) { /* LandingSection */
+  scroll-margin-top: 0;
+}
+
+section:nth-child(3) { /* CausesSection */
+  scroll-margin-top: 100px;
+}
+
+section:nth-child(4) { /* ReachOutSection */
+  scroll-margin-top: 100px;
+}
+
+section:nth-child(5) { /* OurJourneySection */
+  scroll-margin-top: 100px;
+}
+
+section:nth-child(6) { /* QuestionsSection */
+  scroll-margin-top: 100px;
+}
+
+section:nth-child(7) { /* FooterSection */
+  scroll-margin-top: 100px;
 }
 
 /* Responsive breakpoints */

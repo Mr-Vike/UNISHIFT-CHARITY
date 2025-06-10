@@ -1,5 +1,5 @@
 <template>
-  <section class="questions-section section-padding">
+  <section id="faq" class="questions-section section-padding">
     <div class="container">
       <div class="section-header fade-in" ref="header">
         <h2 class="section-title">Frequently Asked Questions</h2>

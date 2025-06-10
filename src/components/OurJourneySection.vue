@@ -1,5 +1,5 @@
 <template>
-  <section class="journey-section section-padding">
+  <section id="journey" class="journey-section section-padding">
     <div class="container">
       <div class="section-header fade-in" ref="header">
         <h2 class="section-title">Our Journey</h2>

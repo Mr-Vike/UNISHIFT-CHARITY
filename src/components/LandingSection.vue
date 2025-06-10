@@ -1,5 +1,5 @@
 <template>
-  <section class="landing-section">
+  <section id="home" class="landing-section">
     <div class="container">
       <div class="landing-content">
         <div class="left-content fade-in" ref="leftContent">
@@ -119,6 +119,7 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   position: relative;
   overflow: hidden;
   width: 100%;
+  padding-top: 80px; /* Add space for fixed navbar */
 }
 
 .landing-content {
@@ -238,6 +239,10 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
 
 /* Tablet styles */
 @media (max-width: 1024px) {
+  .landing-section {
+    padding-top: 70px;
+  }
+  
   .landing-content {
     gap: 60px;
   }
@@ -255,7 +260,7 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
 @media (max-width: 768px) {
   .landing-section {
     min-height: auto;
-    padding: 60px 0;
+    padding: 80px 0 60px;
   }
   
   .landing-content {
@@ -287,6 +292,10 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
 
 /* Small mobile styles */
 @media (max-width: 480px) {
+  .landing-section {
+    padding: 70px 0 50px;
+  }
+  
   .logo-icon {
     margin-right: 12px;
     padding: 8px;
@@ -314,7 +323,7 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
 @media (max-width: 896px) and (orientation: landscape) {
   .landing-section {
     min-height: auto;
-    padding: 40px 0;
+    padding: 60px 0 40px;
   }
   
   .landing-content {

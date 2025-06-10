@@ -1,5 +1,5 @@
 <template>
-  <section class="reach-out-section section-padding">
+  <section id="help" class="reach-out-section section-padding">
     <div class="container">
       <div class="section-header fade-in" ref="header">
         <h2 class="section-title">Ways to Help</h2>
