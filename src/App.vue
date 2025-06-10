@@ -30,6 +30,18 @@ body {
   line-height: 1.6;
   color: #333;
   overflow-x: hidden;
+  background-color: #ffffff;
+  width: 100%;
+  min-height: 100vh;
+}
+
+#app {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  min-height: 100vh;
 }
 
 :root {
@@ -48,6 +60,7 @@ body {
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
 }
 
 .fade-in {
@@ -106,9 +119,17 @@ html {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 24px;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: 100%;
+    padding: 0 20px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -118,6 +139,12 @@ html {
   
   .container {
     padding: 0 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
   }
 }
 </style>

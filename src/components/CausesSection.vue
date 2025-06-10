@@ -87,6 +87,7 @@ onMounted(() => {
 <style scoped>
 .causes-section {
   background: var(--gray-50);
+  width: 100%;
 }
 
 .section-header {
@@ -110,8 +111,9 @@ onMounted(() => {
 
 .causes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 40px;
+  width: 100%;
 }
 
 .cause-card {
@@ -120,6 +122,7 @@ onMounted(() => {
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease;
+  width: 100%;
 }
 
 .cause-card:hover {
@@ -216,6 +219,17 @@ onMounted(() => {
   
   .card-stats {
     gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .causes-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-stats {
+    flex-direction: column;
+    gap: 16px;
   }
 }
 </style>
