@@ -126,6 +126,7 @@ import { Heart, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clo
   background: linear-gradient(135deg, var(--text-dark) 0%, #1a202c 100%);
   color: white;
   padding: 80px 0 0;
+  width: 100%;
 }
 
 .footer-content {
@@ -154,10 +155,11 @@ import { Heart, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clo
   padding: 8px;
   background: rgba(255, 107, 53, 0.1);
   border-radius: 12px;
+  flex-shrink: 0;
 }
 
 .logo-text {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
   -webkit-background-clip: text;
@@ -169,11 +171,13 @@ import { Heart, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clo
   color: #a0aec0;
   line-height: 1.6;
   margin-bottom: 32px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .social-links {
   display: flex;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .social-link {
@@ -200,12 +204,8 @@ import { Heart, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clo
   gap: 40px;
 }
 
-.link-group {
-  
-}
-
 .link-title {
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
   font-weight: 600;
   margin-bottom: 20px;
   color: white;
@@ -223,6 +223,7 @@ import { Heart, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clo
   color: #a0aec0;
   text-decoration: none;
   transition: color 0.3s ease;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
 }
 
 .link-list a:hover {
@@ -237,7 +238,7 @@ import { Heart, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clo
 }
 
 .contact-title {
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.2rem);
   font-weight: 600;
   margin-bottom: 32px;
   color: white;
@@ -252,6 +253,7 @@ import { Heart, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clo
 .contact-item {
   display: flex;
   gap: 12px;
+  align-items: flex-start;
 }
 
 .contact-icon {
@@ -265,11 +267,13 @@ import { Heart, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clo
   color: white;
   margin-bottom: 4px;
   font-weight: 600;
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .contact-details span {
   color: #a0aec0;
   line-height: 1.4;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
 }
 
 .footer-bottom {
@@ -281,22 +285,26 @@ import { Heart, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clo
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .copyright {
   color: #a0aec0;
   margin: 0;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
 }
 
 .footer-bottom-links {
   display: flex;
   gap: 32px;
+  flex-wrap: wrap;
 }
 
 .footer-bottom-links a {
   color: #a0aec0;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
   transition: color 0.3s ease;
 }
 
@@ -304,6 +312,26 @@ import { Heart, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clo
   color: var(--primary-orange);
 }
 
+/* Tablet styles */
+@media (max-width: 1024px) {
+  .footer-section {
+    padding: 60px 0 0;
+  }
+  
+  .footer-main {
+    gap: 60px;
+  }
+  
+  .footer-links {
+    gap: 32px;
+  }
+  
+  .footer-contact {
+    padding: 32px;
+  }
+}
+
+/* Mobile styles */
 @media (max-width: 768px) {
   .footer-section {
     padding: 60px 0 0;
@@ -326,18 +354,20 @@ import { Heart, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clo
   
   .footer-bottom-content {
     flex-direction: column;
-    gap: 20px;
     text-align: center;
   }
   
   .footer-bottom-links {
     gap: 20px;
+    justify-content: center;
   }
 }
 
+/* Small mobile styles */
 @media (max-width: 480px) {
   .footer-links {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
   
   .footer-contact {
@@ -346,6 +376,28 @@ import { Heart, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clo
   
   .social-links {
     justify-content: center;
+  }
+  
+  .contact-item {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+  
+  .footer-bottom-links {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1600px) {
+  .footer-main {
+    gap: 120px;
+  }
+  
+  .footer-links {
+    gap: 60px;
   }
 }
 </style>

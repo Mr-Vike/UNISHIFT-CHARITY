@@ -6,7 +6,7 @@
           <div class="logo-section">
             <div class="logo">
               <div class="logo-icon">
-                <Heart :size="48" color="#FF6B35" />
+                <Heart :size="logoIconSize" color="#FF6B35" />
               </div>
               <h1 class="logo-text">UniSHIFT</h1>
             </div>
@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { Heart } from 'lucide-vue-next'
 import { useIntersectionObserver } from '@vueuse/core'
 
@@ -56,6 +56,15 @@ const rightContent = ref()
 const donationButton = ref()
 const moneyRaised = ref()
 const contributors = ref()
+
+const logoIconSize = computed(() => {
+  if (typeof window !== 'undefined') {
+    if (window.innerWidth <= 480) return 32
+    if (window.innerWidth <= 768) return 40
+    return 48
+  }
+  return 48
+})
 
 const animateNumber = (element: HTMLElement, target: number, duration: number = 2000) => {
   let start = 0
@@ -109,6 +118,7 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   align-items: center;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .landing-content {
@@ -117,6 +127,7 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   gap: 80px;
   align-items: center;
   margin-bottom: 60px;
+  width: 100%;
 }
 
 .logo-section {
@@ -134,10 +145,11 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   padding: 12px;
   background: rgba(255, 107, 53, 0.1);
   border-radius: 16px;
+  flex-shrink: 0;
 }
 
 .logo-text {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
   -webkit-background-clip: text;
@@ -146,7 +158,7 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
 }
 
 .slogan {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
   color: var(--text-light);
   font-weight: 400;
   margin-left: 76px;
@@ -168,7 +180,7 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
 }
 
 .stat-number {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 800;
   color: var(--primary-orange);
   margin-bottom: 8px;
@@ -178,13 +190,14 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
 .stat-label {
   color: var(--text-light);
   font-weight: 500;
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
 .hero-image-container {
   display: flex;
   justify-content: center;
   position: relative;
+  width: 100%;
 }
 
 .hero-image {
@@ -218,35 +231,113 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
 .donation-btn {
   display: flex;
   align-items: center;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   padding: 20px 40px;
   border-radius: 16px;
 }
 
+/* Tablet styles */
+@media (max-width: 1024px) {
+  .landing-content {
+    gap: 60px;
+  }
+  
+  .statistics {
+    gap: 30px;
+  }
+  
+  .stat-item {
+    padding: 24px 16px;
+  }
+}
+
+/* Mobile styles */
 @media (max-width: 768px) {
+  .landing-section {
+    min-height: auto;
+    padding: 60px 0;
+  }
+  
   .landing-content {
     grid-template-columns: 1fr;
     gap: 40px;
     text-align: center;
   }
   
-  .logo-text {
-    font-size: 2.5rem;
-  }
-  
   .slogan {
     margin-left: 0;
-    font-size: 1.2rem;
   }
   
   .statistics {
     grid-template-columns: 1fr;
     gap: 20px;
+    max-width: 300px;
+    margin: 0 auto;
   }
   
   .hero-image {
     max-width: 350px;
     height: 300px;
+  }
+  
+  .logo-section {
+    margin-bottom: 40px;
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+  .logo-icon {
+    margin-right: 12px;
+    padding: 8px;
+  }
+  
+  .slogan {
+    margin-left: 0;
+  }
+  
+  .stat-item {
+    padding: 20px 16px;
+  }
+  
+  .hero-image {
+    max-width: 280px;
+    height: 250px;
+  }
+  
+  .donation-btn {
+    padding: 16px 32px;
+  }
+}
+
+/* Landscape mobile */
+@media (max-width: 896px) and (orientation: landscape) {
+  .landing-section {
+    min-height: auto;
+    padding: 40px 0;
+  }
+  
+  .landing-content {
+    gap: 40px;
+  }
+  
+  .logo-section {
+    margin-bottom: 30px;
+  }
+  
+  .hero-image {
+    height: 250px;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1600px) {
+  .landing-content {
+    gap: 120px;
+  }
+  
+  .statistics {
+    gap: 60px;
   }
 }
 </style>

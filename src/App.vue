@@ -125,6 +125,13 @@ html {
   width: 100%;
 }
 
+/* Responsive breakpoints */
+@media (max-width: 1400px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
 @media (max-width: 1200px) {
   .container {
     max-width: 100%;
@@ -140,11 +147,48 @@ html {
   .container {
     padding: 0 16px;
   }
+  
+  .btn-primary, .btn-secondary {
+    padding: 14px 24px;
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 480px) {
   .container {
     padding: 0 12px;
+  }
+  
+  .section-padding {
+    padding: 40px 0;
+  }
+  
+  .btn-primary, .btn-secondary {
+    padding: 12px 20px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1600px;
+  }
+}
+
+/* Portrait tablets and large phones */
+@media (max-width: 1024px) and (orientation: portrait) {
+  .section-padding {
+    padding: 80px 0;
+  }
+}
+
+/* Landscape phones */
+@media (max-width: 896px) and (orientation: landscape) {
+  .section-padding {
+    padding: 50px 0;
   }
 }
 </style>

@@ -110,6 +110,7 @@ onUnmounted(() => {
 <style scoped>
 .reach-out-section {
   background: white;
+  width: 100%;
 }
 
 .section-header {
@@ -118,14 +119,14 @@ onUnmounted(() => {
 }
 
 .section-title {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
   color: var(--text-dark);
   margin-bottom: 16px;
 }
 
 .section-subtitle {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   color: var(--text-light);
   max-width: 600px;
   margin: 0 auto;
@@ -171,14 +172,14 @@ onUnmounted(() => {
 }
 
 .slide-title {
-  font-size: 2.2rem;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
   font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 20px;
 }
 
 .slide-description {
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   color: var(--text-light);
   line-height: 1.6;
   margin-bottom: 32px;
@@ -189,7 +190,7 @@ onUnmounted(() => {
   align-items: center;
   color: var(--text-light);
   margin-top: 24px;
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
 .map-container {
@@ -223,9 +224,25 @@ onUnmounted(() => {
   transform: scale(1.2);
 }
 
+/* Tablet styles */
+@media (max-width: 1024px) {
+  .slide-content {
+    padding: 50px 40px;
+  }
+  
+  .split-layout {
+    gap: 30px;
+  }
+  
+  .map-container {
+    height: 250px;
+  }
+}
+
+/* Mobile styles */
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 2.5rem;
+  .section-header {
+    margin-bottom: 60px;
   }
   
   .slide-content {
@@ -237,16 +254,63 @@ onUnmounted(() => {
     gap: 30px;
   }
   
-  .slide-title {
-    font-size: 1.8rem;
+  .map-container {
+    height: 250px;
   }
   
-  .slide-description {
-    font-size: 1rem;
+  .slide {
+    min-height: auto;
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+  .slide-content {
+    padding: 30px 20px;
   }
   
   .map-container {
-    height: 250px;
+    height: 200px;
+  }
+  
+  .location-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .slider-indicators {
+    bottom: 20px;
+  }
+}
+
+/* Landscape mobile */
+@media (max-width: 896px) and (orientation: landscape) {
+  .slide-content {
+    padding: 30px 40px;
+  }
+  
+  .slide {
+    min-height: 350px;
+  }
+  
+  .map-container {
+    height: 200px;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1600px) {
+  .slider-container {
+    max-width: 1200px;
+  }
+  
+  .slide-content {
+    padding: 80px;
+  }
+  
+  .split-layout {
+    gap: 60px;
   }
 }
 </style>

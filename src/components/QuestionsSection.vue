@@ -184,6 +184,7 @@ onMounted(() => {
 <style scoped>
 .questions-section {
   background: white;
+  width: 100%;
 }
 
 .section-header {
@@ -192,14 +193,14 @@ onMounted(() => {
 }
 
 .section-title {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
   color: var(--text-dark);
   margin-bottom: 16px;
 }
 
 .section-subtitle {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   color: var(--text-light);
   max-width: 600px;
   margin: 0 auto;
@@ -238,6 +239,7 @@ onMounted(() => {
   align-items: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-align: left;
 }
 
 .question-header.active {
@@ -245,17 +247,17 @@ onMounted(() => {
 }
 
 .question-text {
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
   font-weight: 600;
   color: var(--text-dark);
-  text-align: left;
+  flex: 1;
+  margin-right: 16px;
 }
 
 .chevron {
   color: var(--text-light);
   transition: transform 0.3s ease;
   flex-shrink: 0;
-  margin-left: 16px;
 }
 
 .chevron.rotated {
@@ -269,13 +271,14 @@ onMounted(() => {
 }
 
 .question-content.expanded {
-  max-height: 200px;
+  max-height: 300px;
 }
 
 .answer-text {
   padding: 0 28px 24px;
   color: var(--text-light);
   line-height: 1.6;
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .contact-form-trigger {
@@ -287,7 +290,7 @@ onMounted(() => {
 }
 
 .trigger-content h3 {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 12px;
@@ -299,6 +302,7 @@ onMounted(() => {
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .modal-overlay {
@@ -343,7 +347,7 @@ onMounted(() => {
 }
 
 .modal-title {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 8px;
@@ -352,6 +356,7 @@ onMounted(() => {
 .modal-subtitle {
   color: var(--text-light);
   margin-bottom: 32px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .contact-form {
@@ -369,6 +374,7 @@ onMounted(() => {
   font-weight: 600;
   color: var(--text-dark);
   margin-bottom: 8px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .form-group input,
@@ -397,17 +403,21 @@ onMounted(() => {
   justify-content: flex-end;
 }
 
+/* Tablet styles */
+@media (max-width: 1024px) {
+  .contact-form-trigger {
+    padding: 40px 32px;
+  }
+}
+
+/* Mobile styles */
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 2.5rem;
+  .section-header {
+    margin-bottom: 60px;
   }
   
   .question-header {
     padding: 20px;
-  }
-  
-  .question-text {
-    font-size: 1rem;
   }
   
   .answer-text {
@@ -421,6 +431,41 @@ onMounted(() => {
   .modal-content {
     padding: 32px 24px;
     margin: 20px;
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+  .questions-container {
+    padding: 0;
+  }
+  
+  .question-header {
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .question-text {
+    margin-right: 0;
+  }
+  
+  .chevron {
+    align-self: flex-end;
+  }
+  
+  .answer-text {
+    padding: 0 16px 16px;
+  }
+  
+  .contact-form-trigger {
+    padding: 24px 16px;
+  }
+  
+  .modal-content {
+    padding: 24px 16px;
+    margin: 10px;
   }
   
   .form-actions {

@@ -170,6 +170,7 @@ onUnmounted(() => {
 <style scoped>
 .journey-section {
   background: var(--gray-50);
+  width: 100%;
 }
 
 .section-header {
@@ -178,14 +179,14 @@ onUnmounted(() => {
 }
 
 .section-title {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
   color: var(--text-dark);
   margin-bottom: 16px;
 }
 
 .section-subtitle {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   color: var(--text-light);
   max-width: 600px;
   margin: 0 auto;
@@ -244,6 +245,7 @@ onUnmounted(() => {
   transition: all 0.3s ease;
   position: relative;
   z-index: 2;
+  flex-shrink: 0;
 }
 
 .timeline-node.active .node-circle {
@@ -257,6 +259,7 @@ onUnmounted(() => {
   font-weight: 600;
   color: var(--text-light);
   transition: color 0.3s ease;
+  font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
 .timeline-node.active .node-date {
@@ -312,10 +315,11 @@ onUnmounted(() => {
   color: var(--primary-orange);
   font-weight: 600;
   margin-bottom: 8px;
+  font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
 .milestone-title {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 16px;
@@ -324,7 +328,7 @@ onUnmounted(() => {
 .milestone-description {
   color: var(--text-light);
   line-height: 1.6;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   margin-bottom: 32px;
 }
 
@@ -343,7 +347,7 @@ onUnmounted(() => {
 
 .stat-value {
   display: block;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 700;
   color: var(--primary-orange);
   margin-bottom: 4px;
@@ -351,12 +355,25 @@ onUnmounted(() => {
 
 .stat-label {
   color: var(--text-light);
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
 }
 
+/* Tablet styles */
+@media (max-width: 1024px) {
+  .journey-content {
+    grid-template-columns: 250px 1fr;
+    gap: 40px;
+  }
+  
+  .card-content {
+    padding: 20px 30px 30px;
+  }
+}
+
+/* Mobile styles */
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 2.5rem;
+  .section-header {
+    margin-bottom: 60px;
   }
   
   .journey-content {
@@ -373,6 +390,21 @@ onUnmounted(() => {
     overflow-x: auto;
     padding: 20px 0;
     gap: 20px;
+    scrollbar-width: thin;
+  }
+  
+  .timeline::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  .timeline::-webkit-scrollbar-track {
+    background: var(--gray-100);
+    border-radius: 2px;
+  }
+  
+  .timeline::-webkit-scrollbar-thumb {
+    background: var(--primary-orange);
+    border-radius: 2px;
   }
   
   .timeline::before {
@@ -384,14 +416,60 @@ onUnmounted(() => {
     margin-bottom: 0;
     min-width: 100px;
     text-align: center;
+    flex-shrink: 0;
+  }
+  
+  .timeline-node:hover {
+    transform: translateY(-4px);
   }
   
   .card-content {
     padding: 20px 24px 32px;
   }
   
-  .milestone-title {
-    font-size: 1.5rem;
+  .card-header {
+    padding: 20px 24px 0;
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+  .timeline-node {
+    min-width: 80px;
+  }
+  
+  .node-circle {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .node-date {
+    font-size: 0.7rem;
+  }
+  
+  .card-content {
+    padding: 16px 20px 24px;
+  }
+  
+  .card-header {
+    padding: 16px 20px 0;
+  }
+  
+  .milestone-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .stat-item {
+    padding: 16px 12px;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1600px) {
+  .journey-content {
+    grid-template-columns: 400px 1fr;
+    gap: 80px;
   }
 }
 </style>
