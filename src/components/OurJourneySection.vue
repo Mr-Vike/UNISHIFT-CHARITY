@@ -7,47 +7,108 @@
       </div>
       
       <div class="journey-content fade-in" ref="journeyContent">
-        <div class="timeline-container">
-          <div class="timeline">
-            <div 
-              v-for="(milestone, index) in milestones" 
-              :key="index"
-              class="timeline-node"
-              :class="{ active: activeNode === index }"
-              @click="setActiveNode(index)"
-            >
-              <div class="node-circle">
-                <component :is="milestone.icon" :size="16" />
+        <!-- Desktop Timeline -->
+        <div class="desktop-timeline">
+          <div class="timeline-container">
+            <div class="timeline">
+              <div 
+                v-for="(milestone, index) in milestones" 
+                :key="index"
+                class="timeline-node"
+                :class="{ active: activeNode === index }"
+                @click="setActiveNode(index)"
+              >
+                <div class="node-circle">
+                  <component :is="milestone.icon" :size="16" />
+                </div>
+                <div class="node-date">{{ milestone.date }}</div>
               </div>
-              <div class="node-date">{{ milestone.date }}</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="content-card">
-          <div class="card-header">
-            <div class="navigation-arrows">
-              <button @click="previousNode" class="nav-arrow" :disabled="activeNode === 0">
-                <ChevronLeft :size="20" />
-              </button>
-              <button @click="nextNode" class="nav-arrow" :disabled="activeNode === milestones.length - 1">
-                <ChevronRight :size="20" />
-              </button>
             </div>
           </div>
           
-          <div class="card-content">
-            <div class="milestone-date">{{ milestones[activeNode].date }}</div>
-            <h3 class="milestone-title">{{ milestones[activeNode].title }}</h3>
-            <p class="milestone-description">{{ milestones[activeNode].description }}</p>
-            <div class="milestone-stats" v-if="milestones[activeNode].stats">
-              <div 
-                v-for="(stat, key) in milestones[activeNode].stats" 
-                :key="key"
-                class="stat-item"
-              >
-                <div class="stat-value">{{ stat }}</div>
-                <div class="stat-label">{{ key }}</div>
+          <div class="content-card">
+            <div class="card-header">
+              <div class="navigation-arrows">
+                <button @click="previousNode" class="nav-arrow" :disabled="activeNode === 0">
+                  <ChevronLeft :size="20" />
+                </button>
+                <button @click="nextNode" class="nav-arrow" :disabled="activeNode === milestones.length - 1">
+                  <ChevronRight :size="20" />
+                </button>
+              </div>
+            </div>
+            
+            <div class="card-content">
+              <div class="milestone-date">{{ milestones[activeNode].date }}</div>
+              <h3 class="milestone-title">{{ milestones[activeNode].title }}</h3>
+              <p class="milestone-description">{{ milestones[activeNode].description }}</p>
+              <div class="milestone-stats" v-if="milestones[activeNode].stats">
+                <div 
+                  v-for="(stat, key) in milestones[activeNode].stats" 
+                  :key="key"
+                  class="stat-item"
+                >
+                  <div class="stat-value">{{ stat }}</div>
+                  <div class="stat-label">{{ key }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Timeline -->
+        <div class="mobile-timeline">
+          <div class="mobile-timeline-header">
+            <h3>Timeline Navigation</h3>
+            <div class="timeline-progress">
+              <div class="progress-bar" :style="{ width: `${((activeNode + 1) / milestones.length) * 100}%` }"></div>
+            </div>
+          </div>
+          
+          <div class="mobile-timeline-nav">
+            <button 
+              v-for="(milestone, index) in milestones" 
+              :key="index"
+              class="mobile-timeline-button"
+              :class="{ active: activeNode === index }"
+              @click="setActiveNode(index)"
+            >
+              <div class="mobile-node-circle">
+                <component :is="milestone.icon" :size="14" />
+              </div>
+              <div class="mobile-node-info">
+                <div class="mobile-node-date">{{ milestone.date }}</div>
+                <div class="mobile-node-title">{{ milestone.title }}</div>
+              </div>
+            </button>
+          </div>
+          
+          <div class="mobile-content-card">
+            <div class="mobile-card-header">
+              <div class="milestone-date">{{ milestones[activeNode].date }}</div>
+              <div class="mobile-navigation">
+                <button @click="previousNode" class="mobile-nav-arrow" :disabled="activeNode === 0">
+                  <ChevronLeft :size="18" />
+                </button>
+                <span class="milestone-counter">{{ activeNode + 1 }} / {{ milestones.length }}</span>
+                <button @click="nextNode" class="mobile-nav-arrow" :disabled="activeNode === milestones.length - 1">
+                  <ChevronRight :size="18" />
+                </button>
+              </div>
+            </div>
+            
+            <div class="mobile-card-content">
+              <h3 class="milestone-title">{{ milestones[activeNode].title }}</h3>
+              <p class="milestone-description">{{ milestones[activeNode].description }}</p>
+              <div class="milestone-stats" v-if="milestones[activeNode].stats">
+                <div 
+                  v-for="(stat, key) in milestones[activeNode].stats" 
+                  :key="key"
+                  class="stat-item"
+                >
+                  <div class="stat-value">{{ stat }}</div>
+                  <div class="stat-label">{{ key }}</div>
+                </div>
               </div>
             </div>
           </div>
@@ -157,7 +218,7 @@ useIntersectionObserver(journeyContent, ([{ isIntersecting }]) => {
 })
 
 onMounted(() => {
-  autoProgressInterval = setInterval(autoProgress, 5000)
+  autoProgressInterval = setInterval(autoProgress, 8000)
 })
 
 onUnmounted(() => {
@@ -192,7 +253,8 @@ onUnmounted(() => {
   margin: 0 auto;
 }
 
-.journey-content {
+/* Desktop Timeline Styles */
+.desktop-timeline {
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 60px;
@@ -358,9 +420,177 @@ onUnmounted(() => {
   font-size: clamp(0.8rem, 2vw, 0.9rem);
 }
 
+/* Mobile Timeline Styles */
+.mobile-timeline {
+  display: none;
+}
+
+.mobile-timeline-header {
+  margin-bottom: 24px;
+}
+
+.mobile-timeline-header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.timeline-progress {
+  height: 4px;
+  background: var(--gray-200);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--primary-orange);
+  transition: width 0.3s ease;
+}
+
+.mobile-timeline-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.mobile-timeline-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.mobile-timeline-nav::-webkit-scrollbar-track {
+  background: var(--gray-100);
+  border-radius: 2px;
+}
+
+.mobile-timeline-nav::-webkit-scrollbar-thumb {
+  background: var(--primary-orange);
+  border-radius: 2px;
+}
+
+.mobile-timeline-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: white;
+  border: 2px solid var(--gray-200);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.mobile-timeline-button:hover {
+  border-color: var(--primary-orange);
+  background: var(--light-orange);
+}
+
+.mobile-timeline-button.active {
+  border-color: var(--primary-orange);
+  background: var(--light-orange);
+}
+
+.mobile-node-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.mobile-timeline-button.active .mobile-node-circle {
+  background: var(--primary-orange);
+  color: white;
+}
+
+.mobile-node-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.mobile-node-date {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-bottom: 2px;
+}
+
+.mobile-node-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobile-content-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.mobile-card-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-navigation {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-nav-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--gray-200);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-arrow:hover:not(:disabled) {
+  border-color: var(--primary-orange);
+  color: var(--primary-orange);
+}
+
+.mobile-nav-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.milestone-counter {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.mobile-card-content {
+  padding: 20px;
+}
+
 /* Tablet styles */
 @media (max-width: 1024px) {
-  .journey-content {
+  .desktop-timeline {
     grid-template-columns: 250px 1fr;
     gap: 40px;
   }
@@ -376,83 +606,44 @@ onUnmounted(() => {
     margin-bottom: 60px;
   }
   
-  .journey-content {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  
-  .timeline-container {
-    position: static;
-  }
-  
-  .timeline {
-    display: flex;
-    overflow-x: auto;
-    padding: 20px 0;
-    gap: 20px;
-    scrollbar-width: thin;
-  }
-  
-  .timeline::-webkit-scrollbar {
-    height: 4px;
-  }
-  
-  .timeline::-webkit-scrollbar-track {
-    background: var(--gray-100);
-    border-radius: 2px;
-  }
-  
-  .timeline::-webkit-scrollbar-thumb {
-    background: var(--primary-orange);
-    border-radius: 2px;
-  }
-  
-  .timeline::before {
+  .desktop-timeline {
     display: none;
   }
   
-  .timeline-node {
-    flex-direction: column;
-    margin-bottom: 0;
-    min-width: 100px;
-    text-align: center;
-    flex-shrink: 0;
-  }
-  
-  .timeline-node:hover {
-    transform: translateY(-4px);
-  }
-  
-  .card-content {
-    padding: 20px 24px 32px;
-  }
-  
-  .card-header {
-    padding: 20px 24px 0;
+  .mobile-timeline {
+    display: block;
   }
 }
 
 /* Small mobile styles */
 @media (max-width: 480px) {
-  .timeline-node {
-    min-width: 80px;
+  .mobile-timeline-nav {
+    max-height: 250px;
   }
   
-  .node-circle {
-    width: 32px;
-    height: 32px;
+  .mobile-timeline-button {
+    padding: 10px;
+    gap: 10px;
   }
   
-  .node-date {
-    font-size: 0.7rem;
+  .mobile-node-circle {
+    width: 28px;
+    height: 28px;
   }
   
-  .card-content {
-    padding: 16px 20px 24px;
+  .mobile-node-title {
+    font-size: 0.8rem;
   }
   
-  .card-header {
-    padding: 16px 20px 0;
+  .mobile-card-header {
+    padding: 16px;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .mobile-card-content {
+    padding: 16px;
   }
   
   .milestone-stats {
@@ -467,7 +658,7 @@ onUnmounted(() => {
 
 /* Ultra-wide screens */
 @media (min-width: 1600px) {
-  .journey-content {
+  .desktop-timeline {
     grid-template-columns: 400px 1fr;
     gap: 80px;
   }

@@ -203,7 +203,7 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
 
 .hero-image {
   width: 100%;
-  max-width: 500px;
+  max-width: 650px;
   height: 400px;
   object-fit: cover;
   border-radius: 24px;
@@ -274,15 +274,15 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   }
   
   .statistics {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
-    max-width: 300px;
+    max-width: 400px;
     margin: 0 auto;
   }
   
   .hero-image {
-    max-width: 350px;
-    height: 300px;
+    max-width: 0px;
+    height: 0px;
   }
   
   .logo-section {

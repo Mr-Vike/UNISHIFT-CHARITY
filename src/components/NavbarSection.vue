@@ -77,10 +77,6 @@
             <Heart :size="18" style="margin-right: 8px;" />
             Donate Now
           </a>
-          <a href="#" class="btn-secondary menu-volunteer" @click="closeMenu">
-            <Users :size="18" style="margin-right: 8px;" />
-            Volunteer
-          </a>
         </div>
       </div>
     </div>
@@ -235,8 +231,9 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(1.5px);
+  border-radius: 20px;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
