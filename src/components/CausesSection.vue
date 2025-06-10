@@ -19,16 +19,16 @@
           <div class="card-content">
             <h3 class="card-title">{{ cause.title }}</h3>
             <p class="card-description">{{ cause.description }}</p>
-            <div class="card-stats">
+            <!-- <div class="card-stats">
               <div class="stat">
                 <span class="stat-value">{{ cause.beneficiaries }}</span>
                 <span class="stat-label">Beneficiaries</span>
               </div>
               <div class="stat">
-                <span class="stat-value">${{ cause.raised.toLocaleString() }}</span>
+                <span class="stat-value">{{ cause.raised.toLocaleString() }}</span>
                 <span class="stat-label">Raised</span>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -45,18 +45,18 @@ const cardRefs = ref<HTMLElement[]>([])
 
 const causes = [
   {
-    title: "Emergency Food Relief",
-    description: "Providing immediate food assistance to families facing crisis situations, ensuring no one goes hungry during their most vulnerable moments.",
+    title: "Providing Meals",
+    description: "Providing free nutritious meals to those in need helps combat hunger and improve public health. It ensures vulnerable individuals receive essential nutrients, supports community well-being, and fosters compassion. By addressing food insecurity, such programs promote dignity, reduce inequality, and create a more caring, inclusive society for all.",
     image: "https://images.pexels.com/photos/6995469/pexels-photo-6995469.jpeg?auto=compress&cs=tinysrgb&w=800",
-    beneficiaries: "2,400+",
-    raised: 85000
+    // beneficiaries: "N/A",
+    // raised: "N/A"
   },
   {
-    title: "Community Food Gardens",
-    description: "Building sustainable food sources in underserved communities through education, resources, and ongoing support for local food production.",
+    title: "Creating Opportunities",
+    description: "Raising money to support people facing homelessness, displacement, poverty, or crisis provides vital resources for shelter, food, and stability. It empowers affected individuals, promotes recovery, and fosters community resilience. Such efforts inspire solidarity, reduce suffering, and contribute to building a more just and compassionate society for everyone in need.",
     image: "https://images.pexels.com/photos/4503273/pexels-photo-4503273.jpeg?auto=compress&cs=tinysrgb&w=800",
-    beneficiaries: "1,200+",
-    raised: 42000
+    // beneficiaries: "N/A",
+    // raised: "N/A"
   }
 ]
 

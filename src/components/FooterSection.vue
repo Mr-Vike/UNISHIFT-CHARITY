@@ -10,7 +10,7 @@
             <span class="logo-text">UniSHIFT</span>
           </div>
           <p class="brand-description">
-            Serving Hope In Food Together - Building stronger communities through 
+            Serving Hope In Food Together through unified action- Building stronger communities through 
             sustainable food security and compassionate support.
           </p>
         </div>
@@ -20,20 +20,16 @@
             <h4 class="info-title">Contact Us</h4>
             <div class="contact-items">
               <div class="contact-item">
-                <MapPin :size="16" class="contact-icon" />
-                <span>123 Community Street, Hope City, HC 12345</span>
+                <MailIcon :size="16" class="contact-icon" />
+                <span>info@unishift.org </span>
               </div>
               <div class="contact-item">
                 <Phone :size="16" class="contact-icon" />
-                <span>(555) 123-4567</span>
-              </div>
-              <div class="contact-item">
-                <Mail :size="16" class="contact-icon" />
-                <span>hello@unishift.org</span>
+                <span>+44 7880690832</span>
               </div>
               <div class="contact-item">
                 <Clock :size="16" class="contact-icon" />
-                <span>Mon-Fri: 9AM-6PM, Sat: 10AM-4PM</span>
+                <span>Mon-Fri: 1pm-5pm</span>
               </div>
             </div>
           </div>
@@ -41,17 +37,17 @@
           <div class="social-section">
             <h4 class="info-title">Follow Us</h4>
             <div class="social-links">
-              <a href="#" class="social-link" aria-label="Instagram">
+              <a href="https://www.instagram.com/unishift_org/" class="social-link" aria-label="Instagram">
                 <Instagram :size="20" />
               </a>
-              <a href="#" class="social-link" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/company/unishift" class="social-link" aria-label="LinkedIn">
                 <Linkedin :size="20" />
               </a>
-              <a href="#" class="social-link" aria-label="Email">
-                <Mail :size="20" />
+              <a href="https://unishift.carrd.co/" class="social-link" aria-label="Carrd.co">
+                <CreditCard :size="20" />
               </a>
               <a href="#" class="social-link" aria-label="TikTok">
-                <Music :size="20" />
+                <Music3 :size="20" />
               </a>
             </div>
           </div>
@@ -60,13 +56,6 @@
       
       <div class="footer-bottom">
         <div class="footer-bottom-content">
-          <p class="copyright">
-            © 2024 UniSHIFT. All rights reserved.
-          </p>
-          <div class="footer-bottom-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-          </div>
         </div>
       </div>
     </div>
@@ -74,7 +63,7 @@
 </template>
 
 <script setup lang="ts">
-import { Heart, Instagram, Linkedin, Mail, Music, MapPin, Phone, Clock } from 'lucide-vue-next'
+import { Heart, Instagram, Linkedin, Mail, Music, MapPin, Phone, Clock, MailIcon, CreditCard, Music3 } from 'lucide-vue-next'
 </script>
 
 <style scoped>

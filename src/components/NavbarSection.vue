@@ -73,7 +73,7 @@
         </nav>
         
         <div class="menu-actions">
-          <a href="#" class="btn-primary menu-donate" @click="closeMenu">
+          <a href="https://www.gofundme.com/f/5468g9-hunger-and-homelessness?attribution_id=sl:48ed5f15-7aac-4849-ba46-2d7863e0ed47&lang=en_GB&utm_campaign=man_ss_icons&utm_medium=customer&utm_source=copy_link" class="btn-primary menu-donate" @click="closeMenu">
             <Heart :size="18" style="margin-right: 8px;" />
             Donate Now
           </a>

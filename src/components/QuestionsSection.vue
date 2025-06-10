@@ -63,7 +63,8 @@
         </button>
         
         <h3 class="modal-title">Send us your question</h3>
-        <p class="modal-subtitle">We'll get back to you within 24 hours</p>
+        <p>We'll aim to get back to you within 24 hours</p>
+        <p class="modal-subtitle">If we don't get back to you in 24 hours, please email us on info@unishift.org</p>
         
         <form @submit.prevent="submitForm" class="contact-form">
           <div class="form-group">
@@ -121,24 +122,20 @@ const formData = ref({
 
 const faqs = [
   {
-    question: "How does UniSHIFT ensure food reaches those who need it most?",
-    answer: "We partner directly with local community organizations, schools, and healthcare providers to identify families in need. Our distribution network includes both emergency relief and ongoing support programs, ensuring we reach both immediate crisis situations and long-term food insecurity."
+    question: "What is Unishift and what does it stand for?",
+    answer: "Unishift is a student-led charity initiative focused on creating positive change through community-driven projects, awareness campaigns, and educational outreach. Our mission is to empower young people to make a difference by addressing social, environmental, and educational challenges both locally and globally."
   },
   {
-    question: "What percentage of donations goes directly to food programs?",
-    answer: "We're proud that 87% of all donations go directly to our food programs and community initiatives. The remaining 13% covers essential operational costs, ensuring sustainable and efficient program delivery."
+    question: "What makes Unishift different from other charities?",
+    answer: "What makes Unishift special is that we're entirely youth-driven. We believe in the power of young people to create change, and we give students a platform to lead, learn, and make a real difference. Our approach is grassroots, hands-on, and fueled by genuine passion for social impact."
   },
   {
-    question: "Can I volunteer with UniSHIFT? What opportunities are available?",
-    answer: "Absolutely! We welcome volunteers of all backgrounds and skill levels. Opportunities include food sorting and packing, distribution events, community garden maintenance, administrative support, and special event assistance. Visit our volunteer portal to find opportunities that match your interests and schedule."
+    question: "Where does my money go?",
+    answer: "Your generous donation goes a long way! Every pound you give helps us provide warm, nutritious meals to people experiencing homelessness, making a real difference in their day. It also helps us keep the Unishift platform running—so we can continue spreading awareness, sharing updates, and bringing more people together to support meaningful causes. With your support, we're able to create real impact, both online and in the community."
   },
   {
-    question: "How do you measure the impact of your programs?",
-    answer: "We track multiple metrics including meals provided, families served, community gardens established, and long-term food security improvements. We conduct quarterly surveys with beneficiaries and publish annual impact reports to ensure transparency and continuous improvement."
-  },
-  {
-    question: "Do you accept food donations? What items are most needed?",
-    answer: "Yes, we accept non-perishable food donations at our community center. Most needed items include canned proteins, whole grains, baby food, and hygiene products. We also accept fresh produce from local farms and community gardens. Please check our current needs list on our website before donating."
+    question: "Do you accept food donations?",
+    answer: "We really appreciate your kindness and willingness to help! However, for health and safety reasons, we’re unable to accept food donations from individuals at this time. To ensure the well-being of those we support, we can only accept food that comes from certified organizations that follow strict health and safety guidelines. This helps us make sure everything we distribute is safe, properly handled, and high-quality. Thank you so much for understanding—and there are still plenty of other ways to get involved if you'd like to help!"
   }
 ]
 

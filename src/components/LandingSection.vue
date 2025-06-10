@@ -13,7 +13,7 @@
             <p class="slogan">Serving Hope In Food Together</p>
           </div>
           
-          <div class="statistics">
+          <!-- <div class="statistics">
             <div class="stat-item">
               <div class="stat-number" ref="moneyRaised">$0</div>
               <div class="stat-label">Money Raised</div>
@@ -22,7 +22,7 @@
               <div class="stat-number" ref="contributors">0</div>
               <div class="stat-label">Contributors</div>
             </div>
-          </div>
+          </div> -->
         </div>
         
         <div class="right-content fade-in" ref="rightContent">
@@ -37,7 +37,7 @@
       </div>
       
       <div class="donation-button-container fade-in" ref="donationButton">
-        <a href="#" class="btn-primary donation-btn">
+        <a href="https://www.gofundme.com/f/5468g9-hunger-and-homelessness?attribution_id=sl:48ed5f15-7aac-4849-ba46-2d7863e0ed47&lang=en_GB&utm_campaign=man_ss_icons&utm_medium=customer&utm_source=copy_link" class="btn-primary donation-btn">
           <Heart :size="20" style="margin-right: 8px;" />
           Donate Now
         </a>
@@ -162,16 +162,16 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   font-size: clamp(1rem, 2.5vw, 1.5rem);
   color: var(--text-light);
   font-weight: 400;
-  margin-left: 76px;
+  margin-left: 56px;
 }
 
-.statistics {
+/* .statistics {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-}
+} */
 
-.stat-item {
+/* .stat-item {
   text-align: center;
   padding: 32px 24px;
   background: white;
@@ -192,7 +192,7 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   color: var(--text-light);
   font-weight: 500;
   font-size: clamp(0.8rem, 2vw, 1rem);
-}
+} */
 
 .hero-image-container {
   display: flex;
@@ -233,7 +233,7 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   display: flex;
   align-items: center;
   font-size: clamp(0.9rem, 2vw, 1.1rem);
-  padding: 20px 40px;
+  padding: 30px 60px;
   border-radius: 16px;
 }
 
@@ -247,13 +247,13 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
     gap: 60px;
   }
   
-  .statistics {
+  /* .statistics {
     gap: 30px;
   }
   
   .stat-item {
     padding: 24px 16px;
-  }
+  } */
 }
 
 /* Mobile styles */
@@ -273,16 +273,16 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
     margin-left: 0;
   }
   
-  .statistics {
+  /* .statistics {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     max-width: 400px;
     margin: 0 auto;
-  }
+  } */
   
   .hero-image {
-    max-width: 0px;
-    height: 0px;
+    max-width: 400px;
+    height: 250px;
   }
   
   .logo-section {
@@ -305,13 +305,13 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
     margin-left: 0;
   }
   
-  .stat-item {
+  /* .stat-item {
     padding: 20px 16px;
-  }
+  } */
   
   .hero-image {
-    max-width: 0px;
-    height: 0px;
+    max-width: 230px;
+    height: 150px;
   }
   
   .donation-btn {
@@ -345,8 +345,8 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
     gap: 120px;
   }
   
-  .statistics {
+  /* .statistics {
     gap: 60px;
-  }
+  } */
 }
 </style>

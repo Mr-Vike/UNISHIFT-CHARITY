@@ -120,7 +120,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { ChevronLeft, ChevronRight, Calendar, Users, Heart, Award, Zap } from 'lucide-vue-next'
+import { ChevronLeft, ChevronRight, Calendar, Users, Heart, Award, Zap, Lightbulb, NotepadText } from 'lucide-vue-next'
 import { useIntersectionObserver } from '@vueuse/core'
 
 const header = ref()
@@ -130,55 +130,28 @@ let autoProgressInterval: number
 
 const milestones = [
   {
-    date: "January 2020",
-    title: "Foundation Established",
-    description: "UniSHIFT was founded with a simple mission: to ensure no one in our community goes hungry. Starting with just a small team of passionate volunteers.",
-    icon: Calendar,
+    date: "December 2024",
+    title: "Intial Idea",
+    description: "Committee of members witnessed the deprivation and decided to make a change. Our first Idea was launched and our causes to help the community were decided.",
+    icon: Lightbulb,
     stats: {
-      "Volunteers": "12",
-      "Families Served": "50"
+      "Members": "9",
     }
   },
   {
-    date: "March 2020",
-    title: "Emergency Response",
-    description: "When the pandemic hit, we quickly pivoted to provide emergency food relief, establishing contactless distribution points throughout the city.",
-    icon: Zap,
+    date: "January 2025",
+    title: "Planning",
+    description: "We faced numerous issues when trying to establish Unishift, as students we did not earn and income and could not afford all the necessities to make  a charity. Therefore; we settled for an informal organization and planned the areas we will visit as well as the food we will give out and how much the total cost would be.",
+    icon: NotepadText,
     stats: {
-      "Distribution Points": "8",
-      "Emergency Meals": "2,400"
     }
   },
   {
-    date: "August 2021",
-    title: "Community Gardens Launch",
-    description: "Launched our sustainable food program, helping communities build their own food gardens and become more self-sufficient.",
+    date: "March 2025",
+    title: "Securing Socials",
+    description: "Unishift successfully secured its domain and launched its official website, marking a major milestone in its development. Shortly after, we began building a presence on social media, steadily gaining followers and increasing engagement. Through consistent outreach and content sharing, we started raising awareness about our mission and the causes we stand for, connecting with a growing community that shares our vision",
     icon: Heart,
-    stats: {
-      "Gardens Established": "15",
-      "Community Members": "300"
-    }
   },
-  {
-    date: "December 2022",
-    title: "Regional Expansion",
-    description: "Expanded our reach to serve three additional counties, multiplying our impact and helping even more families access nutritious food.",
-    icon: Users,
-    stats: {
-      "Counties Served": "4",
-      "Partner Organizations": "25"
-    }
-  },
-  {
-    date: "September 2024",
-    title: "Recognition & Growth",
-    description: "Received the Community Impact Award and reached our goal of serving over 10,000 families. Looking ahead to even greater impact.",
-    icon: Award,
-    stats: {
-      "Families Served": "10,000+",
-      "Total Donations": "$500K+"
-    }
-  }
 ]
 
 const setActiveNode = (index: number) => {

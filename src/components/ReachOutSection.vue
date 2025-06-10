@@ -32,14 +32,14 @@
                 <span>Tax Deductible</span>
               </div>
             </div>
-            <a href="#" class="btn-primary card-button">
+            <a href="https://gofund.me/7375339c" class="btn-primary card-button">
               <CreditCard :size="20" style="margin-right: 8px;" />
               Donate Online
             </a>
           </div>
         </div>
         
-        <div class="option-card" ref="inPersonCard">
+        <!-- <div class="option-card" ref="inPersonCard">
           <div class="card-content">
             <div class="card-icon">
               <MapPin :size="32" />
@@ -74,7 +74,7 @@
               </a>
             </div>
           </div>
-        </div>
+        </div> -->
         
         <div class="option-card" ref="volunteerCard">
           <div class="card-content">
@@ -86,7 +86,7 @@
               Join our community of dedicated volunteers. Whether you have an hour or a day, 
               your time makes a real difference in the lives of families we serve.
             </p>
-            <div class="volunteer-opportunities">
+            <!-- <div class="volunteer-opportunities">
               <div class="opportunity">
                 <Package :size="16" />
                 <span>Food Sorting & Packing</span>
@@ -103,7 +103,7 @@
                 <FileText :size="16" />
                 <span>Administrative Support</span>
               </div>
-            </div>
+            </div> -->
             <a href="#" class="btn-primary card-button">
               <Users :size="20" style="margin-right: 8px;" />
               Join Our Team
@@ -120,14 +120,14 @@
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-icon">
-              <DollarSign :size="24" />
+              <PoundSterlingIcon :size="24" />
             </div>
             <div class="stat-content">
-              <div class="stat-number">$25</div>
-              <div class="stat-description">Provides 50 meals for families in need</div>
+              <div class="stat-number">£10</div>
+              <div class="stat-description">Provides 20 meals for people in need</div>
             </div>
           </div>
-          <div class="stat-card">
+          <!-- <div class="stat-card">
             <div class="stat-icon">
               <Clock :size="24" />
             </div>
@@ -135,14 +135,14 @@
               <div class="stat-number">4 Hours</div>
               <div class="stat-description">Of volunteering helps 20+ families</div>
             </div>
-          </div>
+          </div> -->
           <div class="stat-card">
             <div class="stat-icon">
               <Heart :size="24" />
             </div>
             <div class="stat-content">
               <div class="stat-number">100%</div>
-              <div class="stat-description">Of your donation goes to programs</div>
+              <div class="stat-description">Of your donation goes to the program</div>
             </div>
           </div>
         </div>
@@ -166,7 +166,8 @@ import {
   Sprout, 
   FileText, 
   DollarSign, 
-  Heart 
+  Heart, 
+  PoundSterlingIcon
 } from 'lucide-vue-next'
 import { useIntersectionObserver } from '@vueuse/core'
 
