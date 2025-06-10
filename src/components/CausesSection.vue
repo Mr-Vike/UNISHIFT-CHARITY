@@ -15,9 +15,6 @@
         >
           <div class="card-image">
             <img :src="cause.image" :alt="cause.title" />
-            <div class="card-overlay">
-              <button class="btn-secondary">Learn More</button>
-            </div>
           </div>
           <div class="card-content">
             <h3 class="card-title">{{ cause.title }}</h3>
@@ -145,24 +142,6 @@ onMounted(() => {
 
 .cause-card:hover .card-image img {
   transform: scale(1.05);
-}
-
-.card-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 107, 53, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.cause-card:hover .card-overlay {
-  opacity: 1;
 }
 
 .card-content {

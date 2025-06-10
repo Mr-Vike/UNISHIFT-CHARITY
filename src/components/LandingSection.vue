@@ -310,8 +310,8 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   }
   
   .hero-image {
-    max-width: 280px;
-    height: 250px;
+    max-width: 0px;
+    height: 0px;
   }
   
   .donation-btn {

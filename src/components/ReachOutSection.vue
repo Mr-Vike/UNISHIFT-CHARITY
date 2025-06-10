@@ -6,60 +6,145 @@
         <p class="section-subtitle">Choose how you'd like to make a difference</p>
       </div>
       
-      <div class="slider-container fade-in" ref="sliderContainer">
-        <div class="slider-track" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
-          <div class="slide">
-            <div class="slide-content">
-              <div class="slide-text">
-                <h3 class="slide-title">Online Donations</h3>
-                <p class="slide-description">
-                  Make a secure online donation from anywhere in the world. Every contribution, 
-                  no matter the size, helps us reach more families in need and create lasting impact 
-                  in our communities.
-                </p>
-                <a href="#" class="btn-primary">
-                  <CreditCard :size="20" style="margin-right: 8px;" />
-                  Donate Online
-                </a>
+      <div class="help-options fade-in" ref="helpOptions">
+        <div class="option-card" ref="onlineCard">
+          <div class="card-content">
+            <div class="card-icon">
+              <CreditCard :size="32" />
+            </div>
+            <h3 class="card-title">Online Donations</h3>
+            <p class="card-description">
+              Make a secure online donation from anywhere in the world. Every contribution, 
+              no matter the size, helps us reach more families in need and create lasting impact 
+              in our communities.
+            </p>
+            <div class="card-features">
+              <div class="feature">
+                <Shield :size="16" />
+                <span>Secure & Safe</span>
+              </div>
+              <div class="feature">
+                <Clock :size="16" />
+                <span>Instant Processing</span>
+              </div>
+              <div class="feature">
+                <Receipt :size="16" />
+                <span>Tax Deductible</span>
               </div>
             </div>
+            <a href="#" class="btn-primary card-button">
+              <CreditCard :size="20" style="margin-right: 8px;" />
+              Donate Online
+            </a>
           </div>
-          
-          <div class="slide">
-            <div class="slide-content split-layout">
-              <div class="slide-text">
-                <h3 class="slide-title">In-Person Donations</h3>
-                <p class="slide-description">
-                  Visit our community center to drop off food donations, volunteer your time, 
-                  or learn more about our programs. We're always here to welcome new supporters 
-                  and answer any questions.
-                </p>
-                <div class="location-info">
-                  <MapPin :size="16" style="margin-right: 8px;" />
-                  <span>123 Community Street, Hope City, HC 12345</span>
-                </div>
+        </div>
+        
+        <div class="option-card" ref="inPersonCard">
+          <div class="card-content">
+            <div class="card-icon">
+              <MapPin :size="32" />
+            </div>
+            <h3 class="card-title">Visit Our Center</h3>
+            <p class="card-description">
+              Visit our community center to drop off food donations, volunteer your time, 
+              or learn more about our programs. We're always here to welcome new supporters.
+            </p>
+            <div class="location-details">
+              <div class="location-item">
+                <MapPin :size="16" />
+                <span>123 Community Street<br>Hope City, HC 12345</span>
               </div>
-              <div class="map-container">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.1!2d-74.0059!3d40.7128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjEiTiA3NMKwMDAnMjEuMiJX!5e0!3m2!1sen!2sus!4v1234567890"
-                  style="border:0; width: 100%; height: 100%; border-radius: 12px;"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+              <div class="location-item">
+                <Clock :size="16" />
+                <span>Mon-Fri: 9AM-6PM<br>Sat: 10AM-4PM</span>
               </div>
+              <div class="location-item">
+                <Phone :size="16" />
+                <span>(555) 123-4567</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a href="#" class="btn-primary">
+                <MapPin :size="20" style="margin-right: 8px;" />
+                Get Directions
+              </a>
+              <a href="#" class="btn-secondary">
+                <Phone :size="20" style="margin-right: 8px;" />
+                Call Us
+              </a>
             </div>
           </div>
         </div>
         
-        <div class="slider-indicators">
-          <button 
-            v-for="(_, index) in 2" 
-            :key="index"
-            class="indicator"
-            :class="{ active: currentSlide === index }"
-            @click="goToSlide(index)"
-          ></button>
+        <div class="option-card" ref="volunteerCard">
+          <div class="card-content">
+            <div class="card-icon">
+              <Users :size="32" />
+            </div>
+            <h3 class="card-title">Volunteer With Us</h3>
+            <p class="card-description">
+              Join our community of dedicated volunteers. Whether you have an hour or a day, 
+              your time makes a real difference in the lives of families we serve.
+            </p>
+            <div class="volunteer-opportunities">
+              <div class="opportunity">
+                <Package :size="16" />
+                <span>Food Sorting & Packing</span>
+              </div>
+              <div class="opportunity">
+                <Truck :size="16" />
+                <span>Distribution Events</span>
+              </div>
+              <div class="opportunity">
+                <Sprout :size="16" />
+                <span>Community Gardens</span>
+              </div>
+              <div class="opportunity">
+                <FileText :size="16" />
+                <span>Administrative Support</span>
+              </div>
+            </div>
+            <a href="#" class="btn-primary card-button">
+              <Users :size="20" style="margin-right: 8px;" />
+              Join Our Team
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="impact-stats fade-in" ref="impactStats">
+        <div class="stats-header">
+          <h3>Your Impact in Numbers</h3>
+          <p>See how your support creates real change</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <DollarSign :size="24" />
+            </div>
+            <div class="stat-content">
+              <div class="stat-number">$25</div>
+              <div class="stat-description">Provides 50 meals for families in need</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <Clock :size="24" />
+            </div>
+            <div class="stat-content">
+              <div class="stat-number">4 Hours</div>
+              <div class="stat-description">Of volunteering helps 20+ families</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <Heart :size="24" />
+            </div>
+            <div class="stat-content">
+              <div class="stat-number">100%</div>
+              <div class="stat-description">Of your donation goes to programs</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -67,22 +152,30 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import { CreditCard, MapPin } from 'lucide-vue-next'
+import { ref, onMounted } from 'vue'
+import { 
+  CreditCard, 
+  MapPin, 
+  Users, 
+  Shield, 
+  Clock, 
+  Receipt, 
+  Phone, 
+  Package, 
+  Truck, 
+  Sprout, 
+  FileText, 
+  DollarSign, 
+  Heart 
+} from 'lucide-vue-next'
 import { useIntersectionObserver } from '@vueuse/core'
 
 const header = ref()
-const sliderContainer = ref()
-const currentSlide = ref(0)
-let autoSlideInterval: number
-
-const goToSlide = (index: number) => {
-  currentSlide.value = index
-}
-
-const nextSlide = () => {
-  currentSlide.value = (currentSlide.value + 1) % 2
-}
+const helpOptions = ref()
+const onlineCard = ref()
+const inPersonCard = ref()
+const volunteerCard = ref()
+const impactStats = ref()
 
 useIntersectionObserver(header, ([{ isIntersecting }]) => {
   if (isIntersecting) {
@@ -90,20 +183,32 @@ useIntersectionObserver(header, ([{ isIntersecting }]) => {
   }
 })
 
-useIntersectionObserver(sliderContainer, ([{ isIntersecting }]) => {
+useIntersectionObserver(helpOptions, ([{ isIntersecting }]) => {
   if (isIntersecting) {
-    sliderContainer.value.classList.add('visible')
+    helpOptions.value.classList.add('visible')
+  }
+})
+
+useIntersectionObserver(impactStats, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    impactStats.value.classList.add('visible')
   }
 })
 
 onMounted(() => {
-  autoSlideInterval = setInterval(nextSlide, 6000)
-})
-
-onUnmounted(() => {
-  if (autoSlideInterval) {
-    clearInterval(autoSlideInterval)
-  }
+  const cards = [onlineCard, inPersonCard, volunteerCard]
+  
+  cards.forEach((card, index) => {
+    if (card.value) {
+      useIntersectionObserver(card, ([{ isIntersecting }]) => {
+        if (isIntersecting) {
+          setTimeout(() => {
+            card.value.classList.add('visible')
+          }, index * 200)
+        }
+      })
+    }
+  })
 })
 </script>
 
@@ -132,110 +237,247 @@ onUnmounted(() => {
   margin: 0 auto;
 }
 
-.slider-container {
-  position: relative;
-  max-width: 1000px;
-  margin: 0 auto;
-  overflow: hidden;
+.help-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  margin-bottom: 100px;
+}
+
+.option-card {
+  background: white;
   border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(30px);
 }
 
-.slider-track {
-  display: flex;
-  transition: transform 0.8s ease-in-out;
-  width: 200%;
+.option-card.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.slide {
-  width: 50%;
-  min-height: 400px;
+.option-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
+  border-color: var(--primary-orange);
 }
 
-.slide-content {
-  padding: 60px;
-  background: linear-gradient(135deg, var(--light-orange) 0%, var(--white) 100%);
+.card-content {
+  padding: 40px;
   height: 100%;
   display: flex;
+  flex-direction: column;
+}
+
+.card-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--light-orange), rgba(255, 107, 53, 0.1));
+  border-radius: 20px;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  color: var(--primary-orange);
+  margin-bottom: 24px;
+  flex-shrink: 0;
 }
 
-.split-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-}
-
-.slide-text {
-  max-width: 500px;
-}
-
-.slide-title {
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
+.card-title {
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
   font-weight: 700;
   color: var(--text-dark);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
-.slide-description {
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+.card-description {
   color: var(--text-light);
   line-height: 1.6;
   margin-bottom: 32px;
+  flex-grow: 1;
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
-.location-info {
+.card-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.feature {
   display: flex;
   align-items: center;
+  gap: 12px;
   color: var(--text-light);
-  margin-top: 24px;
-  font-size: clamp(0.8rem, 2vw, 1rem);
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
 }
 
-.map-container {
-  height: 300px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+.feature svg {
+  color: var(--primary-orange);
+  flex-shrink: 0;
 }
 
-.slider-indicators {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+.location-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.location-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--text-light);
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+}
+
+.location-item svg {
+  color: var(--primary-orange);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.volunteer-opportunities {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.opportunity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-light);
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+}
+
+.opportunity svg {
+  color: var(--primary-orange);
+  flex-shrink: 0;
+}
+
+.card-button {
+  margin-top: auto;
+  width: 100%;
+  justify-content: center;
+}
+
+.card-actions {
   display: flex;
   gap: 12px;
+  margin-top: auto;
 }
 
-.indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: all 0.3s ease;
+.card-actions .btn-primary,
+.card-actions .btn-secondary {
+  flex: 1;
+  justify-content: center;
+  text-align: center;
 }
 
-.indicator.active {
-  background: var(--primary-orange);
-  transform: scale(1.2);
+.impact-stats {
+  background: linear-gradient(135deg, var(--light-orange) 0%, var(--white) 100%);
+  padding: 60px 40px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+.stats-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.stats-header h3 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.stats-header p {
+  color: var(--text-light);
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 32px;
+}
+
+.stat-card {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--light-orange);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-orange);
+  flex-shrink: 0;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-number {
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  font-weight: 700;
+  color: var(--primary-orange);
+  margin-bottom: 4px;
+}
+
+.stat-description {
+  color: var(--text-light);
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  line-height: 1.4;
 }
 
 /* Tablet styles */
 @media (max-width: 1024px) {
-  .slide-content {
-    padding: 50px 40px;
+  .help-options {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-bottom: 80px;
   }
   
-  .split-layout {
-    gap: 30px;
+  .card-content {
+    padding: 32px;
   }
   
-  .map-container {
-    height: 250px;
+  .impact-stats {
+    padding: 50px 32px;
+  }
+  
+  .stats-grid {
+    gap: 24px;
+  }
+  
+  .stat-card {
+    padding: 24px;
+    gap: 16px;
   }
 }
 
@@ -245,72 +487,123 @@ onUnmounted(() => {
     margin-bottom: 60px;
   }
   
-  .slide-content {
-    padding: 40px 30px;
-  }
-  
-  .split-layout {
+  .help-options {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 24px;
+    margin-bottom: 60px;
   }
   
-  .map-container {
-    height: 250px;
+  .card-content {
+    padding: 24px;
   }
   
-  .slide {
-    min-height: auto;
+  .volunteer-opportunities {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-actions {
+    flex-direction: column;
+  }
+  
+  .impact-stats {
+    padding: 40px 24px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .stat-card {
+    padding: 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
   }
 }
 
 /* Small mobile styles */
 @media (max-width: 480px) {
-  .slide-content {
-    padding: 30px 20px;
+  .card-content {
+    padding: 20px;
   }
   
-  .map-container {
-    height: 200px;
+  .card-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
   }
   
-  .location-info {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+  .card-features,
+  .location-details {
+    gap: 10px;
+    margin-bottom: 24px;
   }
   
-  .slider-indicators {
-    bottom: 20px;
+  .impact-stats {
+    padding: 32px 16px;
+  }
+  
+  .stats-header {
+    margin-bottom: 32px;
+  }
+  
+  .stat-card {
+    padding: 16px;
+  }
+  
+  .stat-icon {
+    width: 50px;
+    height: 50px;
   }
 }
 
 /* Landscape mobile */
 @media (max-width: 896px) and (orientation: landscape) {
-  .slide-content {
-    padding: 30px 40px;
+  .help-options {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
   
-  .slide {
-    min-height: 350px;
+  .card-content {
+    padding: 24px;
   }
   
-  .map-container {
-    height: 200px;
+  .impact-stats {
+    padding: 40px 32px;
   }
 }
 
 /* Ultra-wide screens */
 @media (min-width: 1600px) {
-  .slider-container {
-    max-width: 1200px;
-  }
-  
-  .slide-content {
-    padding: 80px;
-  }
-  
-  .split-layout {
+  .help-options {
+    grid-template-columns: repeat(3, 1fr);
     gap: 60px;
+    margin-bottom: 120px;
   }
+  
+  .card-content {
+    padding: 50px;
+  }
+  
+  .impact-stats {
+    padding: 80px 60px;
+  }
+  
+  .stats-grid {
+    gap: 40px;
+  }
+}
+
+/* Animation delays for staggered entrance */
+.option-card:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.option-card:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.option-card:nth-child(3) {
+  transition-delay: 0.4s;
 }
 </style>
