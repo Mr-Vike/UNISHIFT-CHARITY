@@ -6,7 +6,7 @@
           <div class="logo-section">
             <div class="logo">
               <div class="logo-icon">
-                <Heart :size="logoIconSize" color="#FF6B35" />
+                <img src="\UniSHIFT-LOGO-removebg-preview.png" alt="Logo" class="logo-img" />
               </div>
               <h1 class="logo-text">UniSHIFT</h1>
             </div>
@@ -149,10 +149,20 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
 
 .logo-icon {
   margin-right: 16px;
-  padding: 12px;
-  background: rgba(255, 107, 53, 0.1);
-  border-radius: 16px;
+  padding: 8px;
+  background: white;
+  border-radius: 60px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
 }
 
 .logo-text {
@@ -209,7 +219,7 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
 
 .hero-image {
   width: 100%;
-  max-width: 650px;
+  max-width: 500px;
   height: 400px;
   object-fit: cover;
   border-radius: 24px;
@@ -270,7 +280,16 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
 @media (max-width: 768px) {
   .landing-section {
     min-height: auto;
-    padding: 80px 0 60px;
+    padding: 100px 0 60px;
+  }
+
+    .logo-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo-icon {
+    padding: 8px;
   }
   
   .landing-content {
@@ -309,10 +328,15 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   .landing-section {
     padding: 70px 0 50px;
   }
+
+    .logo-img {
+    width: 44px;
+    height: 44px;
+  }
   
   .logo-icon {
     margin-right: 12px;
-    padding: 8px;
+    padding: 7px;
   }
   
   .logo-section {

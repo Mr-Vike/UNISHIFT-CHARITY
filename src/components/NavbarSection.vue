@@ -4,7 +4,7 @@
       <div class="navbar-brand">
         <div class="logo">
           <div class="logo-icon">
-            <Heart :size="24" color="#FF6B35" />
+              <img src="\UniSHIFT-LOGO-removebg-preview.png" alt="Logo" class="logo-img" />
           </div>
           <span class="logo-text">UniSHIFT</span>
         </div>
@@ -32,7 +32,7 @@
         <div class="menu-header">
           <div class="logo">
             <div class="logo-icon">
-              <Heart :size="24" color="#FF6B35" />
+              <img src="\UniSHIFT-LOGO-removebg-preview.png" alt="Logo" class="logo-img" />
             </div>
             <span class="logo-text">UniSHIFT</span>
           </div>
@@ -162,12 +162,21 @@ onUnmounted(() => {
 }
 
 .logo-icon {
-  margin-right: 12px;
-  padding: 8px;
-  background: rgba(255, 107, 53, 0.1);
-  border-radius: 12px;
+  margin-right: 16px;
+  padding: 6px;
+  background: white;
+  border-radius: 60px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
-  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
 }
 
 .logo-text {
@@ -356,6 +365,15 @@ onUnmounted(() => {
   
   .navbar-container {
     padding: 12px 16px;
+  }
+
+  .logo-img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .logo-icon {
+    padding: 6px;
   }
   
   .logo-text {
