@@ -120,7 +120,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { ChevronLeft, ChevronRight, Calendar, Users, Heart, Award, Zap, Lightbulb, NotepadText } from 'lucide-vue-next'
+import { ChevronLeft, ChevronRight, Heart, Lightbulb, NotepadText } from 'lucide-vue-next'
 import { useIntersectionObserver } from '@vueuse/core'
 
 const header = ref()

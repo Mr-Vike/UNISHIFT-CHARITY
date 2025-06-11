@@ -12,7 +12,7 @@
             v-for="(faq, index) in faqs" 
             :key="index"
             class="question-card fade-in"
-            :ref="el => cardRefs[index] = el"
+            :ref="(el) => setCardRef(el, index)"
           >
             <button 
               class="question-header"
@@ -64,7 +64,7 @@ import QuestionForm from './QuestionForm.vue'
 
 const header = ref()
 const contactTrigger = ref()
-const cardRefs = ref<HTMLElement[]>([])
+const cardRefs = ref<(HTMLElement | null)[]>([])
 const activeQuestion = ref(-1)
 const showContactForm = ref(false)
 
@@ -86,6 +86,12 @@ const faqs = [
     answer: "We really appreciate your kindness and willingness to help! However, for health and safety reasons, we're unable to accept food donations from individuals at this time. To ensure the well-being of those we support, we can only accept food that comes from certified organizations that follow strict health and safety guidelines. This helps us make sure everything we distribute is safe, properly handled, and high-quality. Thank you so much for understanding—and there are still plenty of other ways to get involved if you'd like to help!"
   }
 ]
+
+const setCardRef = (el: any, index: number) => {
+  if (el && el instanceof HTMLElement) {
+    cardRefs.value[index] = el
+  }
+}
 
 const toggleQuestion = (index: number) => {
   activeQuestion.value = activeQuestion.value === index ? -1 : index

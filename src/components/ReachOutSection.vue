@@ -155,17 +155,10 @@
 import { ref, onMounted } from 'vue'
 import { 
   CreditCard, 
-  MapPin, 
   Users, 
   Shield, 
   Clock, 
   Receipt, 
-  Phone, 
-  Package, 
-  Truck, 
-  Sprout, 
-  FileText, 
-  DollarSign, 
   Heart, 
   PoundSterlingIcon
 } from 'lucide-vue-next'

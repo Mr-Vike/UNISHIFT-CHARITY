@@ -85,7 +85,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { Heart, X, Home, Heart as HandHeart, MapPin, MessageCircle, Phone, Users } from 'lucide-vue-next'
+import { Heart, X, Home, Heart as HandHeart, MapPin, MessageCircle, Phone } from 'lucide-vue-next'
 
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)

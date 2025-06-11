@@ -11,7 +11,7 @@
           v-for="(cause, index) in causes" 
           :key="index"
           class="cause-card fade-in"
-          :ref="el => cardRefs[index] = el"
+          :ref="(el) => setCardRef(el, index)"
         >
           <div class="card-image">
             <img :src="cause.image" :alt="cause.title" />
@@ -40,8 +40,8 @@
 import { ref, onMounted } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
 
-const header = ref()
-const cardRefs = ref<HTMLElement[]>([])
+const header = ref<HTMLElement>()
+const cardRefs = ref<(HTMLElement | null)[]>([])
 
 const causes = [
   {
@@ -53,15 +53,21 @@ const causes = [
   },
   {
     title: "Creating Opportunities",
-    description: "Raising money to support people facing homelessness, displacement, poverty, or crisis provides vital resources for shelter, food, and stability. It empowers affected individuals, promotes recovery, and fosters community resilience. Such efforts inspire solidarity, reduce suffering, and contribute to building a more just and compassionate society for everyone in need.",
+    description: "Raising money to support people facing homelessness, displacement, poverty, or crisis provides vital resources for shelter, food, and stability. It empowers affected individuals, promotes recovery, and fosters community resilience. Such efforts inspire solidarity, reduce suffering, and contribute to building a more just and compassionate society for everyone in need.",
     image: "https://images.pexels.com/photos/4503273/pexels-photo-4503273.jpeg?auto=compress&cs=tinysrgb&w=800",
     // beneficiaries: "N/A",
     // raised: "N/A"
   }
 ]
 
+const setCardRef = (el: any, index: number) => {
+  if (el && el instanceof HTMLElement) {
+    cardRefs.value[index] = el
+  }
+}
+
 useIntersectionObserver(header, ([{ isIntersecting }]) => {
-  if (isIntersecting) {
+  if (isIntersecting && header.value) {
     header.value.classList.add('visible')
   }
 })

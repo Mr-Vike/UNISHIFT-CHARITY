@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref } from 'vue'
 import { Heart } from 'lucide-vue-next'
 import { useIntersectionObserver } from '@vueuse/core'
 
@@ -57,14 +57,6 @@ const donationButton = ref()
 const moneyRaised = ref()
 const contributors = ref()
 
-const logoIconSize = computed(() => {
-  if (typeof window !== 'undefined') {
-    if (window.innerWidth <= 480) return 32
-    if (window.innerWidth <= 768) return 40
-    return 48
-  }
-  return 48
-})
 
 const animateNumber = (element: HTMLElement, target: number, duration: number = 2000) => {
   let start = 0

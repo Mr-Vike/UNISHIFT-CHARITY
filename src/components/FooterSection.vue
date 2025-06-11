@@ -63,7 +63,7 @@
 </template>
 
 <script setup lang="ts">
-import { Heart, Instagram, Linkedin, Mail, Music, MapPin, Phone, Clock, MailIcon, CreditCard, Music3 } from 'lucide-vue-next'
+import { Instagram, Linkedin, Phone, Clock, MailIcon, CreditCard, Music3 } from 'lucide-vue-next'
 </script>
 
 <style scoped>
