@@ -50,6 +50,21 @@ const writeEnquiries = (enquiries) => {
   }
 };
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'UniSHIFT API Server',
+    version: '1.0.0',
+    endpoints: {
+      'POST /api/questions': 'Submit a new question',
+      'GET /api/questions': 'Get all enquiries (admin)',
+      'GET /api/questions/stats': 'Get enquiry statistics',
+      'GET /api/health': 'Health check'
+    }
+  });
+});
+
 // POST endpoint to submit a question
 app.post('/api/questions', (req, res) => {
   try {
@@ -168,7 +183,23 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// 404 handler for undefined routes
+app.use('*', (req, res) => {
+  res.status(404).json({
+    success: false,
+    message: `Route ${req.originalUrl} not found`,
+    availableEndpoints: [
+      'GET /',
+      'POST /api/questions',
+      'GET /api/questions',
+      'GET /api/questions/stats',
+      'GET /api/health'
+    ]
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  console.log(`API available at: http://localhost:${PORT}`);
   console.log(`Enquiries will be saved to: ${enquiriesPath}`);
 });
