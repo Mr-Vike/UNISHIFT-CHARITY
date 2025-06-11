@@ -66,7 +66,36 @@
         <p>We'll aim to get back to you within 24 hours</p>
         <p class="modal-subtitle">If we don't get back to you in 24 hours, please email us on info@unishift.org</p>
         
-        <form @submit.prevent="submitForm" class="contact-form">
+        <!-- Success Message -->
+        <div v-if="submitStatus === 'success'" class="success-message">
+          <div class="success-icon">
+            <CheckCircle :size="24" />
+          </div>
+          <div class="success-content">
+            <h4>Question Submitted Successfully!</h4>
+            <p>Thank you for reaching out. We've received your question and will get back to you within 24 hours.</p>
+            <button @click="resetForm" class="btn-primary">
+              Ask Another Question
+            </button>
+          </div>
+        </div>
+        
+        <!-- Error Message -->
+        <div v-if="submitStatus === 'error'" class="error-message">
+          <div class="error-icon">
+            <AlertCircle :size="24" />
+          </div>
+          <div class="error-content">
+            <h4>Submission Failed</h4>
+            <p>{{ errorMessage }}</p>
+            <button @click="submitStatus = ''" class="btn-secondary">
+              Try Again
+            </button>
+          </div>
+        </div>
+        
+        <!-- Form -->
+        <form v-if="!submitStatus" @submit.prevent="submitForm" class="contact-form">
           <div class="form-group">
             <label for="email">Your Email</label>
             <input 
@@ -75,6 +104,7 @@
               v-model="formData.email"
               required
               placeholder="your@email.com"
+              :disabled="isSubmitting"
             />
           </div>
           
@@ -86,16 +116,27 @@
               required
               placeholder="Type your question here..."
               rows="4"
+              :disabled="isSubmitting"
             ></textarea>
           </div>
           
           <div class="form-actions">
-            <button type="button" @click="showContactForm = false" class="btn-secondary">
+            <button 
+              type="button" 
+              @click="showContactForm = false" 
+              class="btn-secondary"
+              :disabled="isSubmitting"
+            >
               Cancel
             </button>
-            <button type="submit" class="btn-primary">
-              <Send :size="20" style="margin-right: 8px;" />
-              Send Question
+            <button 
+              type="submit" 
+              class="btn-primary"
+              :disabled="isSubmitting"
+            >
+              <Send v-if="!isSubmitting" :size="20" style="margin-right: 8px;" />
+              <div v-else class="loading-spinner"></div>
+              {{ isSubmitting ? 'Sending...' : 'Send Question' }}
             </button>
           </div>
         </form>
@@ -106,7 +147,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { ChevronDown, MessageCircle, X, Send } from 'lucide-vue-next'
+import { ChevronDown, MessageCircle, X, Send, CheckCircle, AlertCircle } from 'lucide-vue-next'
 import { useIntersectionObserver } from '@vueuse/core'
 
 const header = ref()
@@ -114,6 +155,9 @@ const contactTrigger = ref()
 const cardRefs = ref<HTMLElement[]>([])
 const activeQuestion = ref(-1)
 const showContactForm = ref(false)
+const isSubmitting = ref(false)
+const submitStatus = ref('') // '', 'success', 'error'
+const errorMessage = ref('')
 
 const formData = ref({
   email: '',
@@ -135,7 +179,7 @@ const faqs = [
   },
   {
     question: "Do you accept food donations?",
-    answer: "We really appreciate your kindness and willingness to help! However, for health and safety reasons, we’re unable to accept food donations from individuals at this time. To ensure the well-being of those we support, we can only accept food that comes from certified organizations that follow strict health and safety guidelines. This helps us make sure everything we distribute is safe, properly handled, and high-quality. Thank you so much for understanding—and there are still plenty of other ways to get involved if you'd like to help!"
+    answer: "We really appreciate your kindness and willingness to help! However, for health and safety reasons, we're unable to accept food donations from individuals at this time. To ensure the well-being of those we support, we can only accept food that comes from certified organizations that follow strict health and safety guidelines. This helps us make sure everything we distribute is safe, properly handled, and high-quality. Thank you so much for understanding—and there are still plenty of other ways to get involved if you'd like to help!"
   }
 ]
 
@@ -143,12 +187,51 @@ const toggleQuestion = (index: number) => {
   activeQuestion.value = activeQuestion.value === index ? -1 : index
 }
 
-const submitForm = () => {
-  // Handle form submission here
-  console.log('Form submitted:', formData.value)
-  showContactForm.value = false
+const submitForm = async () => {
+  if (isSubmitting.value) return
+  
+  isSubmitting.value = true
+  submitStatus.value = ''
+  errorMessage.value = ''
+
+  try {
+    const response = await fetch('http://localhost:3001/api/questions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: formData.value.email.trim(),
+        question: formData.value.question.trim()
+      })
+    })
+
+    const result = await response.json()
+
+    if (result.success) {
+      submitStatus.value = 'success'
+    } else {
+      submitStatus.value = 'error'
+      errorMessage.value = result.message || 'Failed to submit your question. Please try again.'
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error)
+    submitStatus.value = 'error'
+    errorMessage.value = 'Network error. Please check your connection and try again.'
+  } finally {
+    isSubmitting.value = false
+  }
+}
+
+const resetForm = () => {
   formData.value = { email: '', question: '' }
-  // Show success message
+  submitStatus.value = ''
+  errorMessage.value = ''
+}
+
+const closeModal = () => {
+  showContactForm.value = false
+  resetForm()
 }
 
 useIntersectionObserver(header, ([{ isIntersecting }]) => {
@@ -389,6 +472,12 @@ onMounted(() => {
   border-color: var(--primary-orange);
 }
 
+.form-group input:disabled,
+.form-group textarea:disabled {
+  background: var(--gray-100);
+  cursor: not-allowed;
+}
+
 .form-group textarea {
   resize: vertical;
   min-height: 100px;
@@ -398,6 +487,78 @@ onMounted(() => {
   display: flex;
   gap: 16px;
   justify-content: flex-end;
+}
+
+.success-message,
+.error-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.success-message {
+  background: #f0f9ff;
+  border: 1px solid #0ea5e9;
+}
+
+.error-message {
+  background: #fef2f2;
+  border: 1px solid #ef4444;
+}
+
+.success-icon,
+.error-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.success-icon {
+  color: #0ea5e9;
+}
+
+.error-icon {
+  color: #ef4444;
+}
+
+.success-content h4,
+.error-content h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.success-content h4 {
+  color: #0c4a6e;
+}
+
+.error-content h4 {
+  color: #991b1b;
+}
+
+.success-content p,
+.error-content p {
+  color: var(--text-light);
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Tablet styles */
@@ -467,6 +628,13 @@ onMounted(() => {
   
   .form-actions {
     flex-direction: column;
+  }
+  
+  .success-message,
+  .error-message {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
   }
 }
 </style>
