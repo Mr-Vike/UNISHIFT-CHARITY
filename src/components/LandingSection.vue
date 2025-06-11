@@ -133,6 +133,12 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
 
 .logo-section {
   margin-bottom: 60px;
+  /* Center on desktop and larger screens, but shift slightly right */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 10%;
 }
 
 .logo {
@@ -247,6 +253,10 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
     gap: 60px;
   }
   
+  .logo-section {
+    padding-left: 5%;
+  }
+  
   /* .statistics {
     gap: 30px;
   }
@@ -269,6 +279,14 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
     text-align: center;
   }
   
+  .logo-section {
+    /* Center everything on mobile */
+    align-items: center;
+    text-align: center;
+    padding-left: 0;
+    margin-bottom: 40px;
+  }
+  
   .slogan {
     margin-left: 0;
   }
@@ -284,10 +302,6 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
     max-width: 400px;
     height: 250px;
   }
-  
-  .logo-section {
-    margin-bottom: 40px;
-  }
 }
 
 /* Small mobile styles */
@@ -299,6 +313,13 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   .logo-icon {
     margin-right: 12px;
     padding: 8px;
+  }
+  
+  .logo-section {
+    /* Ensure perfect centering on small mobile */
+    align-items: center;
+    text-align: center;
+    padding-left: 0;
   }
   
   .slogan {
@@ -332,6 +353,10 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   
   .logo-section {
     margin-bottom: 30px;
+    /* Center on landscape mobile */
+    align-items: center;
+    text-align: center;
+    padding-left: 0;
   }
   
   .hero-image {
@@ -345,8 +370,33 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
     gap: 120px;
   }
   
+  .logo-section {
+    padding-left: 15%;
+  }
+  
   /* .statistics {
     gap: 60px;
   } */
+}
+
+/* Extra large desktop screens - more pronounced right shift */
+@media (min-width: 1200px) {
+  .logo-section {
+    padding-left: 12%;
+  }
+}
+
+/* Medium desktop screens */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .logo-section {
+    padding-left: 8%;
+  }
+}
+
+/* Small desktop/large tablet */
+@media (min-width: 769px) and (max-width: 991px) {
+  .logo-section {
+    padding-left: 3%;
+  }
 }
 </style>
