@@ -139,7 +139,8 @@ const submitForm = async () => {
   errorMessage.value = ''
 
   try {
-    const response = await fetch('/api/questions', {
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+    const response = await fetch(`${apiUrl}/api/questions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

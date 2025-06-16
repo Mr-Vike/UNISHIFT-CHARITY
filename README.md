@@ -1,99 +1,202 @@
-# UniSHIFT Charity Website
+# UniSHIFT Project
 
-A Vue 3 + TypeScript charity website for UniSHIFT organization with question submission functionality.
-
-## Features
-
-- Modern, responsive design
-- FAQ section with expandable questions
-- Contact form with question submission
-- Backend API for storing enquiries
-- JSON file storage for visitor questions
-
-## Development Setup
-
-### Prerequisites
-- Node.js (v16 or higher)
-- npm or yarn
-
-### Installation
-
-1. Install dependencies:
-```bash
-npm install
-```
-
-2. Start the development server:
-```bash
-npm run dev
-```
-
-3. In a separate terminal, start the backend server:
-```bash
-npm run server
-```
-
-The frontend will be available at `http://localhost:5173` and the backend API at `http://localhost:3001`.
-
-## API Endpoints
-
-### Submit Question
-- **POST** `/api/questions`
-- Body: `{ email: string, question: string }`
-- Response: `{ success: boolean, message: string, enquiryId?: string }`
-
-### Get All Enquiries (Admin)
-- **GET** `/api/questions`
-- Response: `{ success: boolean, enquiries: Array }`
-
-### Get Statistics
-- **GET** `/api/questions/stats`
-- Response: `{ success: boolean, stats: Object }`
-
-### Health Check
-- **GET** `/api/health`
-- Response: `{ success: boolean, message: string, timestamp: string }`
-
-## Data Storage
-
-All visitor enquiries are stored in `server/data/enquiries.json` with the following structure:
-
-```json
-[
-  {
-    "id": "1704067200000",
-    "email": "user@example.com",
-    "question": "What is UniSHIFT?",
-    "timestamp": "2024-01-01T00:00:00.000Z",
-    "status": "new",
-    "ipAddress": "127.0.0.1"
-  }
-]
-```
-
-## Build for Production
-
-```bash
-npm run build
-```
+A complete charity website system with Vue.js frontend, Express.js backend, and Discord bot integration.
 
 ## Project Structure
 
 ```
-├── src/
-│   ├── components/          # Vue components
-│   ├── App.vue             # Main app component
-│   └── main.ts             # App entry point
-├── server/
-│   ├── data/               # JSON data storage
-│   └── index.js            # Express server
-└── public/                 # Static assets
+├── website/          # Vue.js frontend application
+├── server/           # Express.js backend API
+├── discord-bot/      # Discord bot for donation management
+└── README.md         # This file
 ```
 
-## Technologies Used
+## Components
 
-- **Frontend**: Vue 3, TypeScript, Vite
-- **Backend**: Node.js, Express
-- **Styling**: CSS with custom properties
-- **Icons**: Lucide Vue Next
-- **Storage**: JSON files
+### 1. Website (Frontend)
+- **Technology:** Vue 3 + TypeScript + Vite
+- **Features:** 
+  - Responsive charity website
+  - Real-time donation statistics
+  - Question submission form
+  - MongoDB integration for live updates
+
+### 2. Server (Backend)
+- **Technology:** Express.js + MongoDB
+- **Features:**
+  - RESTful API for questions and donations
+  - Email notifications
+  - Database management
+  - CORS enabled
+
+### 3. Discord Bot
+- **Technology:** Discord.js + MongoDB
+- **Features:**
+  - Slash commands for donation management
+  - Question response system
+  - Real-time notifications
+  - Email integration
+
+## Quick Start
+
+### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB database
+- Discord bot token (for bot component)
+- Email account with app password
+
+### 1. Setup Website
+```bash
+cd website
+npm install
+cp .env.example .env
+# Configure VITE_API_URL and VITE_MONGODB_URI in .env
+npm run dev
+```
+
+### 2. Setup Server
+```bash
+cd server
+npm install
+cp .env.example .env
+# Configure MongoDB and email settings in .env
+npm start
+```
+
+### 3. Setup Discord Bot
+```bash
+cd discord-bot
+npm install
+cp .env.example .env
+# Configure Discord and database settings in .env
+npm start
+```
+
+## Environment Variables
+
+### Website (.env)
+```
+VITE_API_URL=http://localhost:3001
+VITE_MONGODB_URI=mongodb://localhost:27017/unishift
+```
+
+### Server (.env)
+```
+MONGODB_URI=mongodb://localhost:27017/unishift
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
+EMAIL_FROM=info@unishift.org
+PORT=3001
+```
+
+### Discord Bot (.env)
+```
+DISCORD_TOKEN=your_discord_bot_token
+DISCORD_GUILD_ID=your_guild_id
+DISCORD_QUESTIONS_CHANNEL_ID=your_questions_channel_id
+MONGODB_URI=mongodb://localhost:27017/unishift
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
+EMAIL_FROM=info@unishift.org
+```
+
+## Deployment
+
+### Website (Frontend)
+- **Recommended:** Netlify, Vercel, or any static hosting
+- Build command: `npm run build`
+- Publish directory: `dist`
+
+### Server (Backend)
+- **Recommended:** Render, Railway, Heroku, or VPS
+- Supports Node.js applications
+- Requires MongoDB connection
+
+### Discord Bot
+- **Recommended:** Render (background worker), Railway, or VPS
+- Needs 24/7 uptime for real-time features
+
+## Database Schema
+
+### Collections
+
+#### donations
+```json
+{
+  "_id": "ObjectId",
+  "amount": "number",
+  "timestamp": "Date"
+}
+```
+
+#### questions
+```json
+{
+  "_id": "ObjectId",
+  "email": "string",
+  "question": "string",
+  "timestamp": "Date",
+  "status": "new|responded",
+  "ipAddress": "string",
+  "response": "string (optional)",
+  "respondedAt": "Date (optional)"
+}
+```
+
+## Features
+
+### Real-time Updates
+- Website automatically updates donation statistics
+- Discord bot receives instant question notifications
+- MongoDB change streams for live data synchronization
+
+### Email Integration
+- Automatic question submissions
+- Staff responses via Discord
+- Professional email templates
+
+### Discord Commands
+- `/add <amount>` - Add donation with confirmation
+- `/view [page]` - Paginated donation history
+- Question response system with modals
+
+## Development
+
+Each component can be developed independently:
+
+1. **Website:** `cd website && npm run dev`
+2. **Server:** `cd server && npm run dev`
+3. **Discord Bot:** `cd discord-bot && npm run dev`
+
+## Production Considerations
+
+1. **Security:**
+   - Use environment variables for all secrets
+   - Enable CORS only for your domain
+   - Use HTTPS in production
+
+2. **Database:**
+   - Use MongoDB Atlas or managed database
+   - Set up proper indexes
+   - Regular backups
+
+3. **Monitoring:**
+   - Add logging for all components
+   - Monitor API endpoints
+   - Discord bot uptime monitoring
+
+## Support
+
+For issues or questions:
+1. Check individual component README files
+2. Review environment variable configuration
+3. Ensure MongoDB connection is working
+4. Verify Discord bot permissions
+
+## License
+
+This project is for UniSHIFT charity organization.

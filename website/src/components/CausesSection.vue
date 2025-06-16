@@ -19,16 +19,6 @@
           <div class="card-content">
             <h3 class="card-title">{{ cause.title }}</h3>
             <p class="card-description">{{ cause.description }}</p>
-            <!-- <div class="card-stats">
-              <div class="stat">
-                <span class="stat-value">{{ cause.beneficiaries }}</span>
-                <span class="stat-label">Beneficiaries</span>
-              </div>
-              <div class="stat">
-                <span class="stat-value">{{ cause.raised.toLocaleString() }}</span>
-                <span class="stat-label">Raised</span>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
@@ -48,15 +38,11 @@ const causes = [
     title: "Providing Meals",
     description: "Providing free nutritious meals to those in need helps combat hunger and improve public health. It ensures vulnerable individuals receive essential nutrients, supports community well-being, and fosters compassion. By addressing food insecurity, such programs promote dignity, reduce inequality, and create a more caring, inclusive society for all.",
     image: "https://images.pexels.com/photos/6995469/pexels-photo-6995469.jpeg?auto=compress&cs=tinysrgb&w=800",
-    // beneficiaries: "N/A",
-    // raised: "N/A"
   },
   {
     title: "Creating Opportunities",
     description: "Raising money to support people facing homelessness, displacement, poverty, or crisis provides vital resources for shelter, food, and stability. It empowers affected individuals, promotes recovery, and fosters community resilience. Such efforts inspire solidarity, reduce suffering, and contribute to building a more just and compassionate society for everyone in need.",
     image: "https://images.pexels.com/photos/4503273/pexels-photo-4503273.jpeg?auto=compress&cs=tinysrgb&w=800",
-    // beneficiaries: "N/A",
-    // raised: "N/A"
   }
 ]
 
@@ -168,29 +154,6 @@ onMounted(() => {
   font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
-.card-stats {
-  display: flex;
-  gap: 32px;
-  justify-content: center;
-}
-
-.stat {
-  text-align: center;
-  flex: 1;
-}
-
-.stat-value {
-  display: block;
-  font-size: clamp(1.2rem, 3vw, 1.5rem);
-  font-weight: 700;
-  color: var(--primary-orange);
-}
-
-.stat-label {
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
-  color: var(--text-light);
-}
-
 /* Tablet styles */
 @media (max-width: 1024px) {
   .causes-grid {
@@ -200,10 +163,6 @@ onMounted(() => {
   
   .card-content {
     padding: 24px;
-  }
-  
-  .card-stats {
-    gap: 24px;
   }
 }
 
@@ -225,10 +184,6 @@ onMounted(() => {
   .card-content {
     padding: 24px;
   }
-  
-  .card-stats {
-    gap: 20px;
-  }
 }
 
 /* Small mobile styles */
@@ -244,17 +199,6 @@ onMounted(() => {
   
   .card-content {
     padding: 20px;
-  }
-  
-  .card-stats {
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  .stat {
-    padding: 12px;
-    background: var(--light-orange);
-    border-radius: 8px;
   }
 }
 

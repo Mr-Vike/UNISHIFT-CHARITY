@@ -39,43 +39,6 @@
           </div>
         </div>
         
-        <!-- <div class="option-card" ref="inPersonCard">
-          <div class="card-content">
-            <div class="card-icon">
-              <MapPin :size="32" />
-            </div>
-            <h3 class="card-title">Visit Our Center</h3>
-            <p class="card-description">
-              Visit our community center to drop off food donations, volunteer your time, 
-              or learn more about our programs. We're always here to welcome new supporters.
-            </p>
-            <div class="location-details">
-              <div class="location-item">
-                <MapPin :size="16" />
-                <span>123 Community Street<br>Hope City, HC 12345</span>
-              </div>
-              <div class="location-item">
-                <Clock :size="16" />
-                <span>Mon-Fri: 9AM-6PM<br>Sat: 10AM-4PM</span>
-              </div>
-              <div class="location-item">
-                <Phone :size="16" />
-                <span>(555) 123-4567</span>
-              </div>
-            </div>
-            <div class="card-actions">
-              <a href="#" class="btn-primary">
-                <MapPin :size="20" style="margin-right: 8px;" />
-                Get Directions
-              </a>
-              <a href="#" class="btn-secondary">
-                <Phone :size="20" style="margin-right: 8px;" />
-                Call Us
-              </a>
-            </div>
-          </div>
-        </div> -->
-        
         <div class="option-card" ref="volunteerCard">
           <div class="card-content">
             <div class="card-icon">
@@ -86,24 +49,6 @@
               Join our community of dedicated volunteers. Whether you have an hour or a day, 
               your time makes a real difference in the lives of families we serve.
             </p>
-            <!-- <div class="volunteer-opportunities">
-              <div class="opportunity">
-                <Package :size="16" />
-                <span>Food Sorting & Packing</span>
-              </div>
-              <div class="opportunity">
-                <Truck :size="16" />
-                <span>Distribution Events</span>
-              </div>
-              <div class="opportunity">
-                <Sprout :size="16" />
-                <span>Community Gardens</span>
-              </div>
-              <div class="opportunity">
-                <FileText :size="16" />
-                <span>Administrative Support</span>
-              </div>
-            </div> -->
             <a href="https://www.linkedin.com/company/unishift" class="btn-primary card-button">
               <Users :size="20" style="margin-right: 8px;" />
               Join Our Team
@@ -127,15 +72,6 @@
               <div class="stat-description">Provides 20 meals for people in need</div>
             </div>
           </div>
-          <!-- <div class="stat-card">
-            <div class="stat-icon">
-              <Clock :size="24" />
-            </div>
-            <div class="stat-content">
-              <div class="stat-number">4 Hours</div>
-              <div class="stat-description">Of volunteering helps 20+ families</div>
-            </div>
-          </div> -->
           <div class="stat-card">
             <div class="stat-icon">
               <Heart :size="24" />
@@ -167,7 +103,6 @@ import { useIntersectionObserver } from '@vueuse/core'
 const header = ref()
 const helpOptions = ref()
 const onlineCard = ref()
-const inPersonCard = ref()
 const volunteerCard = ref()
 const impactStats = ref()
 
@@ -190,7 +125,7 @@ useIntersectionObserver(impactStats, ([{ isIntersecting }]) => {
 })
 
 onMounted(() => {
-  const cards = [onlineCard, inPersonCard, volunteerCard]
+  const cards = [onlineCard, volunteerCard]
   
   cards.forEach((card, index) => {
     if (card.value) {
@@ -315,64 +250,10 @@ onMounted(() => {
   flex-shrink: 0;
 }
 
-.location-details {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.location-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  color: var(--text-light);
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
-}
-
-.location-item svg {
-  color: var(--primary-orange);
-  margin-top: 2px;
-  flex-shrink: 0;
-}
-
-.volunteer-opportunities {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 32px;
-}
-
-.opportunity {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-light);
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
-}
-
-.opportunity svg {
-  color: var(--primary-orange);
-  flex-shrink: 0;
-}
-
 .card-button {
   margin-top: auto;
   width: 100%;
   justify-content: center;
-}
-
-.card-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: auto;
-}
-
-.card-actions .btn-primary,
-.card-actions .btn-secondary {
-  flex: 1;
-  justify-content: center;
-  text-align: center;
 }
 
 .impact-stats {
@@ -491,14 +372,6 @@ onMounted(() => {
     padding: 24px;
   }
   
-  .volunteer-opportunities {
-    grid-template-columns: 1fr;
-  }
-  
-  .card-actions {
-    flex-direction: column;
-  }
-  
   .impact-stats {
     padding: 40px 24px;
   }
@@ -528,8 +401,7 @@ onMounted(() => {
     margin-bottom: 20px;
   }
   
-  .card-features,
-  .location-details {
+  .card-features {
     gap: 10px;
     margin-bottom: 24px;
   }
@@ -570,7 +442,7 @@ onMounted(() => {
 /* Ultra-wide screens */
 @media (min-width: 1600px) {
   .help-options {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 60px;
     margin-bottom: 120px;
   }
@@ -595,9 +467,5 @@ onMounted(() => {
 
 .option-card:nth-child(2) {
   transition-delay: 0.2s;
-}
-
-.option-card:nth-child(3) {
-  transition-delay: 0.4s;
 }
 </style>

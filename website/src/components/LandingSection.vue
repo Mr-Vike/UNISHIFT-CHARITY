@@ -13,16 +13,16 @@
             <p class="slogan">Serving Hope In Food Together</p>
           </div>
           
-          <!-- <div class="statistics">
+          <div class="statistics">
             <div class="stat-item">
-              <div class="stat-number" ref="moneyRaised">$0</div>
+              <div class="stat-number" ref="moneyRaised">£{{ totalDonations }}</div>
               <div class="stat-label">Money Raised</div>
             </div>
             <div class="stat-item">
-              <div class="stat-number" ref="contributors">0</div>
-              <div class="stat-label">Contributors</div>
+              <div class="stat-number" ref="contributors">{{ donationCount }}</div>
+              <div class="stat-label">Donations</div>
             </div>
-          </div> -->
+          </div>
         </div>
         
         <div class="right-content fade-in" ref="rightContent">
@@ -47,9 +47,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Heart } from 'lucide-vue-next'
 import { useIntersectionObserver } from '@vueuse/core'
+import { MongoClient } from 'mongodb'
 
 const leftContent = ref()
 const rightContent = ref()
@@ -57,6 +58,48 @@ const donationButton = ref()
 const moneyRaised = ref()
 const contributors = ref()
 
+const totalDonations = ref('0.00')
+const donationCount = ref(0)
+
+// MongoDB connection
+const connectToMongoDB = async () => {
+  try {
+    const mongoUri = import.meta.env.VITE_MONGODB_URI || 'mongodb://localhost:27017/unishift'
+    const client = new MongoClient(mongoUri)
+    await client.connect()
+    return client.db('unishift')
+  } catch (error) {
+    console.error('Failed to connect to MongoDB:', error)
+    return null
+  }
+}
+
+// Fetch donation statistics
+const fetchDonationStats = async () => {
+  try {
+    const db = await connectToMongoDB()
+    if (!db) return
+
+    const donations = await db.collection('donations').find({}).toArray()
+    
+    const total = donations.reduce((sum, donation) => sum + donation.amount, 0)
+    totalDonations.value = total.toFixed(2)
+    donationCount.value = donations.length
+
+    // Set up change stream to listen for new donations
+    const changeStream = db.collection('donations').watch()
+    changeStream.on('change', (change) => {
+      if (change.operationType === 'insert') {
+        const newAmount = change.fullDocument.amount
+        const currentTotal = parseFloat(totalDonations.value)
+        totalDonations.value = (currentTotal + newAmount).toFixed(2)
+        donationCount.value += 1
+      }
+    })
+  } catch (error) {
+    console.error('Error fetching donation stats:', error)
+  }
+}
 
 const animateNumber = (element: HTMLElement, target: number, duration: number = 2000) => {
   let start = 0
@@ -76,16 +119,6 @@ const animateNumber = (element: HTMLElement, target: number, duration: number = 
 useIntersectionObserver(leftContent, ([{ isIntersecting }]) => {
   if (isIntersecting) {
     leftContent.value.classList.add('visible')
-    setTimeout(() => {
-      if (moneyRaised.value && contributors.value) {
-        moneyRaised.value.textContent = '$'
-        contributors.value.textContent = ''
-        setTimeout(() => {
-          animateNumber(moneyRaised.value, 125000)
-          animateNumber(contributors.value, 847)
-        }, 500)
-      }
-    }, 800)
   }
 })
 
@@ -99,6 +132,10 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   if (isIntersecting) {
     donationButton.value.classList.add('visible')
   }
+})
+
+onMounted(() => {
+  fetchDonationStats()
 })
 </script>
 
@@ -173,13 +210,13 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   margin-left: 56px;
 }
 
-/* .statistics {
+.statistics {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-} */
+}
 
-/* .stat-item {
+.stat-item {
   text-align: center;
   padding: 32px 24px;
   background: white;
@@ -200,7 +237,7 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
   color: var(--text-light);
   font-weight: 500;
   font-size: clamp(0.8rem, 2vw, 1rem);
-} */
+}
 
 .hero-image-container {
   display: flex;
@@ -259,13 +296,13 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
     padding-left: 5%;
   }
   
-  /* .statistics {
+  .statistics {
     gap: 30px;
   }
   
   .stat-item {
     padding: 24px 16px;
-  } */
+  }
 }
 
 /* Mobile styles */
@@ -302,12 +339,12 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
     margin-left: 0;
   }
   
-  /* .statistics {
+  .statistics {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     max-width: 400px;
     margin: 0 auto;
-  } */
+  }
   
   .hero-image {
     max-width: 400px;
@@ -342,9 +379,9 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
     margin-left: 0;
   }
   
-  /* .stat-item {
+  .stat-item {
     padding: 20px 16px;
-  } */
+  }
   
   .hero-image {
     max-width: 230px;
@@ -390,9 +427,9 @@ useIntersectionObserver(donationButton, ([{ isIntersecting }]) => {
     padding-left: 15%;
   }
   
-  /* .statistics {
+  .statistics {
     gap: 60px;
-  } */
+  }
 }
 
 /* Extra large desktop screens - more pronounced right shift */
